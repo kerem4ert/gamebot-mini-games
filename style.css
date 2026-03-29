@@ -16,6 +16,7 @@
   --text-soft: #6b7280;
   --success: #16a34a;
   --danger: #dc2626;
+  --warning: #f59e0b;
 }
 
 body {
@@ -28,14 +29,35 @@ body {
 }
 
 .app-wrapper {
-  max-width: 1360px;
+  max-width: 1380px;
   margin: 0 auto;
+}
+
+.floating-sound-button {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  width: 52px;
+  height: 52px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(17, 24, 39, 0.92);
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
+  transition: 0.22s ease;
+}
+
+.floating-sound-button:hover {
+  transform: translateY(-2px) scale(1.03);
 }
 
 .chat-container {
   width: 100%;
-  max-width: 430px;
-  height: 680px;
+  max-width: 470px;
+  height: 760px;
   margin: 0 auto;
   background: #ffffff;
   border-radius: 24px;
@@ -54,18 +76,49 @@ body {
 }
 
 .chat-header h1 {
-  font-size: 26px;
+  font-size: 28px;
   margin-bottom: 6px;
 }
 
 .chat-header p {
   font-size: 14px;
-  opacity: 0.95;
+  opacity: 0.96;
+}
+
+.chat-stats-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 12px 14px;
+  background: #f3f4f6;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.chat-stat-pill {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 10px 8px;
+  text-align: center;
+}
+
+.chat-stat-label {
+  display: block;
+  font-size: 11px;
+  color: var(--text-soft);
+  margin-bottom: 4px;
+  font-weight: bold;
+}
+
+.chat-stat-value {
+  font-size: 15px;
+  color: var(--text-main);
+  font-weight: bold;
 }
 
 .chat-messages {
   flex: 1;
-  padding: 20px;
+  padding: 18px;
   overflow-y: auto;
   background: var(--soft-bg);
   display: flex;
@@ -74,7 +127,7 @@ body {
 }
 
 .message {
-  max-width: 78%;
+  max-width: 86%;
   padding: 12px 15px;
   border-radius: 16px;
   line-height: 1.5;
@@ -97,11 +150,72 @@ body {
   border-bottom-right-radius: 4px;
 }
 
+.message.option-message {
+  max-width: 92%;
+}
+
+.message-text {
+  white-space: pre-wrap;
+}
+
 .message-time {
   font-size: 10px;
   margin-top: 6px;
   opacity: 0.7;
   text-align: right;
+}
+
+.chat-option-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.chat-option-button {
+  border: none;
+  border-radius: 999px;
+  padding: 9px 14px;
+  background: linear-gradient(135deg, #111827, #374151);
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.22s ease;
+}
+
+.chat-option-button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+}
+
+.chat-option-button.secondary {
+  background: linear-gradient(135deg, #eef2ff, #e0f2fe);
+  color: #312e81;
+  border: 1px solid #c7d2fe;
+}
+
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 52px;
+  min-height: 18px;
+}
+
+.typing-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #6b7280;
+  animation: bounce 1.2s infinite ease-in-out;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.3s;
 }
 
 .chat-input-area {
@@ -153,77 +267,9 @@ body {
   cursor: not-allowed;
 }
 
-.typing-indicator {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  min-width: 52px;
-  min-height: 18px;
-}
-
-.typing-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #6b7280;
-  animation: bounce 1.2s infinite ease-in-out;
-}
-
-.typing-dot:nth-child(2) {
-  animation-delay: 0.15s;
-}
-
-.typing-dot:nth-child(3) {
-  animation-delay: 0.3s;
-}
-
-@keyframes bounce {
-  0%, 80%, 100% {
-    transform: scale(0.7);
-    opacity: 0.5;
-  }
-  40% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes screenEnter {
-  from {
-    opacity: 0;
-    transform: translateY(16px) scale(0.985);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes messagePop {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes tileReveal {
-  from {
-    transform: scale(0.88);
-    opacity: 0.7;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
 .game-screen {
   width: 100%;
-  min-height: 760px;
+  min-height: 780px;
   background: var(--panel-bg);
   backdrop-filter: blur(14px);
   border-radius: 28px;
@@ -255,7 +301,7 @@ body {
 .game-topbar p {
   color: var(--text-soft);
   font-size: 14px;
-  max-width: 620px;
+  max-width: 720px;
 }
 
 .topbar-actions {
@@ -301,7 +347,7 @@ body {
   transform: translateY(-1px);
 }
 
-/* Sorting setup */
+/* Sorting */
 
 .sorting-setup-wrap {
   flex: 1;
@@ -384,17 +430,21 @@ body {
   cursor: not-allowed;
 }
 
-/* Sorting game */
-
 .sorting-game-layout {
   flex: 1;
   display: grid;
-  grid-template-columns: 220px 1fr;
+  grid-template-columns: 250px 1fr;
   gap: 24px;
   align-items: start;
   justify-content: center;
-  padding-top: 6px;
+  padding-top: 4px;
   animation: screenEnter 0.35s ease;
+}
+
+.sorting-side-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .sorting-side-panel {
@@ -406,9 +456,16 @@ body {
   align-self: start;
 }
 
+.panel-label {
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--text-soft);
+  margin-bottom: 12px;
+}
+
 .current-number-card {
-  width: 150px;
-  height: 150px;
+  width: 160px;
+  height: 160px;
   margin: 0 auto 16px;
   border-radius: 28px;
   background: linear-gradient(135deg, var(--accent), #ef4444);
@@ -416,15 +473,28 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 46px;
+  font-size: 48px;
   font-weight: bold;
   box-shadow: 0 18px 30px rgba(239, 68, 68, 0.22);
   animation: tileReveal 0.24s ease;
+  user-select: none;
+  touch-action: none;
+  cursor: grab;
+}
+
+.current-number-card:active {
+  cursor: grabbing;
 }
 
 .current-number-card.disabled {
   background: linear-gradient(135deg, #9ca3af, #6b7280);
   box-shadow: none;
+  cursor: not-allowed;
+}
+
+.current-number-card.pulse,
+.block-score-value.pulse {
+  animation: valuePulse 0.32s ease;
 }
 
 .range-badge {
@@ -437,11 +507,38 @@ body {
   font-weight: bold;
 }
 
+.game-mini-stats {
+  display: grid;
+  gap: 12px;
+}
+
+.mini-stat-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  padding: 14px 16px;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.05);
+}
+
+.mini-stat-label {
+  display: block;
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--text-soft);
+  margin-bottom: 6px;
+}
+
+.mini-stat-value {
+  font-size: 22px;
+  color: var(--text-main);
+  font-weight: bold;
+}
+
 .sorting-board-shell {
   background: linear-gradient(180deg, rgba(248, 250, 252, 0.98), rgba(241, 245, 249, 0.98));
   border: 1px solid #e5e7eb;
   border-radius: 28px;
-  padding: 18px 18px;
+  padding: 16px 18px;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -464,7 +561,6 @@ body {
   border-radius: 18px;
   border: 2px dashed #c7d2fe;
   background: linear-gradient(180deg, #eef2ff, #e5edff);
-  cursor: pointer;
   transition: 0.22s ease;
   display: flex;
   flex-direction: column;
@@ -473,22 +569,30 @@ body {
   box-shadow: 0 8px 20px rgba(79, 70, 229, 0.05);
 }
 
-.sorting-box:hover {
-  transform: translateY(-3px) scale(1.03);
+.sorting-box.empty {
+  cursor: pointer;
+}
+
+.sorting-box.empty:hover {
+  transform: translateY(-2px) scale(1.02);
   border-color: var(--primary);
-  background: linear-gradient(180deg, #e3eaff, #dce7ff);
-  box-shadow: 0 16px 30px rgba(79, 70, 229, 0.14);
 }
 
 .sorting-box.filled {
   border-style: solid;
   background: linear-gradient(180deg, #dbeafe, #d7e8ff);
-  cursor: default;
   animation: tileReveal 0.24s ease;
 }
 
-.sorting-box.filled:hover {
-  transform: none;
+.sorting-box.drag-valid {
+  border-color: var(--success);
+  background: linear-gradient(180deg, #dcfce7, #bbf7d0);
+  transform: translateY(-2px) scale(1.03);
+}
+
+.sorting-box.drag-invalid {
+  border-color: var(--danger);
+  background: linear-gradient(180deg, #fee2e2, #fecaca);
 }
 
 .sorting-box.lose {
@@ -517,6 +621,14 @@ body {
   color: #312e81;
 }
 
+.drag-ghost {
+  position: fixed;
+  pointer-events: none;
+  z-index: 1200;
+  transform: translate(-50%, -50%);
+  opacity: 0.95;
+}
+
 /* Quiz */
 
 .quiz-layout {
@@ -533,6 +645,31 @@ body {
   border: 1px solid #e5e7eb;
   border-radius: 24px;
   padding: 24px;
+}
+
+.quiz-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.quiz-category-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: #312e81;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.quiz-set-title {
+  color: var(--text-soft);
+  font-size: 13px;
+  font-weight: bold;
 }
 
 .quiz-progress {
@@ -638,6 +775,13 @@ body {
   line-height: 1.6;
 }
 
+.quiz-result-meta {
+  margin-top: 12px;
+  color: var(--text-soft);
+  font-size: 14px;
+  font-weight: bold;
+}
+
 .quiz-review-list {
   display: flex;
   flex-direction: column;
@@ -690,7 +834,7 @@ body {
 
 .block-puzzle-layout {
   display: grid;
-  grid-template-columns: 240px 1fr;
+  grid-template-columns: 250px 1fr;
   gap: 28px;
   align-items: start;
 }
@@ -721,6 +865,10 @@ body {
   color: var(--primary);
 }
 
+.block-score-value.small {
+  font-size: 30px;
+}
+
 .block-status-text {
   font-size: 15px;
   line-height: 1.6;
@@ -735,7 +883,7 @@ body {
 
 .block-board {
   width: 100%;
-  max-width: 560px;
+  max-width: 580px;
   aspect-ratio: 1 / 1;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
@@ -753,12 +901,6 @@ body {
   background: #e5e7eb;
   border: 1px solid #d1d5db;
   transition: 0.18s ease;
-  cursor: pointer;
-}
-
-.block-cell:hover {
-  transform: scale(1.03);
-  border-color: var(--primary);
 }
 
 .block-cell.filled {
@@ -803,11 +945,13 @@ body {
   border: 2px solid #dbeafe;
   background: #ffffff;
   padding: 14px;
-  cursor: pointer;
   transition: 0.22s ease;
   display: flex;
   align-items: center;
   justify-content: center;
+  user-select: none;
+  touch-action: none;
+  cursor: grab;
 }
 
 .block-piece-card:hover {
@@ -815,16 +959,18 @@ body {
   border-color: var(--primary);
 }
 
-.block-piece-card.selected {
-  border-color: var(--primary);
-  background: #eef2ff;
-  box-shadow: 0 14px 26px rgba(79, 70, 229, 0.12);
+.block-piece-card:active {
+  cursor: grabbing;
 }
 
 .block-piece-card.used {
   opacity: 0.45;
   cursor: not-allowed;
   background: #f3f4f6;
+}
+
+.block-piece-card.dragging {
+  opacity: 0.2;
 }
 
 .block-piece-grid {
@@ -845,6 +991,66 @@ body {
   border-color: transparent;
 }
 
+/* Animations */
+
+@keyframes bounce {
+  0%, 80%, 100% {
+    transform: scale(0.7);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes screenEnter {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes messagePop {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes tileReveal {
+  from {
+    transform: scale(0.88);
+    opacity: 0.7;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes valuePulse {
+  0% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Responsive */
+
 @media (max-width: 1200px) {
   .sorting-game-layout {
     grid-template-columns: 1fr;
@@ -852,8 +1058,9 @@ body {
     align-items: start;
   }
 
-  .sorting-side-panel {
-    width: 220px;
+  .sorting-side-column {
+    width: 100%;
+    max-width: 280px;
   }
 
   .sorting-board {
@@ -877,10 +1084,21 @@ body {
     padding: 0;
   }
 
+  .floating-sound-button {
+    top: 12px;
+    right: 12px;
+    width: 48px;
+    height: 48px;
+  }
+
   .chat-container,
   .game-screen {
     min-height: 100vh;
     border-radius: 0;
+  }
+
+  .chat-stats-strip {
+    grid-template-columns: 1fr;
   }
 
   .game-topbar {
@@ -894,25 +1112,18 @@ body {
 
   .sorting-setup-wrap {
     min-height: auto;
-    padding-top: 30px;
+    padding-top: 20px;
   }
 
   .sorting-game-layout {
     gap: 18px;
-    justify-items: center;
-    align-items: start;
     padding-top: 0;
   }
 
-  .sorting-side-panel {
-    width: 100%;
-    max-width: 260px;
-  }
-
   .current-number-card {
-    width: 130px;
-    height: 130px;
-    font-size: 40px;
+    width: 132px;
+    height: 132px;
+    font-size: 42px;
   }
 
   .sorting-board-shell {
@@ -964,8 +1175,6 @@ body {
   }
 
   .block-piece-cell {
-    width: 18px;
-    height: 18px;
     border-radius: 5px;
   }
 }
