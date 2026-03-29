@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GameBot</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-wrapper">
+    <div class="chat-container" id="chatContainer">
+      <div class="chat-header">
+        <h1>GameBot</h1>
+        <p>Choose a game and start playing</p>
+      </div>
+
+      <div class="chat-messages" id="chatMessages"></div>
+
+      <div class="chat-input-area">
+        <input
+          type="text"
+          id="messageInput"
+          placeholder="Type your message..."
+          autocomplete="off"
+        />
+        <button id="sendButton">Send</button>
+      </div>
+    </div>
+
+    <div class="game-screen hidden" id="sortingScreen">
+      <div class="game-topbar">
+        <div>
+          <h2>Number Sorting Challenge</h2>
+          <p>Place every new number so the sequence stays in ascending order from left to right.</p>
+        </div>
+        <div class="topbar-actions">
+          <button class="secondary-button" id="restartSortingGameButton">Restart</button>
+          <button class="close-game-button" id="closeSortingGameButton">✕</button>
+        </div>
+      </div>
+
+      <div class="sorting-setup-wrap" id="sortingSetupWrap">
+        <div class="sorting-setup-card" id="sortingSetupCard">
+          <h3>Select Difficulty Range</h3>
+          <p>Choose a range to begin the challenge.</p>
+          <div class="range-buttons" id="rangeButtons">
+            <button class="range-button" data-range="25">1 - 25</button>
+            <button class="range-button" data-range="50">1 - 50</button>
+            <button class="range-button" data-range="100">1 - 100</button>
+          </div>
+          <div class="selected-range-text" id="selectedRangeText">No range selected</div>
+          <button class="start-range-button" id="startSortingWithRangeButton" disabled>
+            Start Challenge
+          </button>
+        </div>
+      </div>
+
+      <div class="sorting-game-layout hidden" id="sortingGameLayout">
+        <div class="sorting-side-panel">
+          <div class="current-number-card" id="currentNumberCard">-</div>
+          <div class="range-badge" id="currentRangeBadge">Range: -</div>
+        </div>
+
+        <div class="sorting-board-shell">
+          <div class="sorting-board" id="sortingBoard"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="game-screen hidden" id="quizScreen">
+      <div class="game-topbar">
+        <div>
+          <h2>General Knowledge Quiz</h2>
+          <p>Answer 5 multiple-choice questions</p>
+        </div>
+        <div class="topbar-actions">
+          <button class="secondary-button" id="restartQuizButton">Restart</button>
+          <button class="close-game-button" id="closeQuizGameButton">✕</button>
+        </div>
+      </div>
+
+      <div class="quiz-layout">
+        <div class="quiz-main-card" id="quizMainCard">
+          <div class="quiz-progress" id="quizProgress">Question 1 of 5</div>
+          <div class="quiz-question" id="quizQuestion">Question text</div>
+          <div class="quiz-options" id="quizOptions"></div>
+          <div class="quiz-feedback" id="quizFeedback"></div>
+        </div>
+
+        <div class="quiz-results hidden" id="quizResults">
+          <div class="quiz-score-card">
+            <h3 id="quizFinalTitle">Quiz Completed</h3>
+            <p class="quiz-score" id="quizFinalScore">0 / 5</p>
+            <p class="quiz-ranking" id="quizRankingText"></p>
+          </div>
+
+          <div class="quiz-review-list" id="quizReviewList"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
