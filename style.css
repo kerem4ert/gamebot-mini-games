@@ -243,7 +243,7 @@ body {
   align-items: flex-start;
   justify-content: space-between;
   gap: 16px;
-  margin-bottom: 28px;
+  margin-bottom: 22px;
 }
 
 .game-topbar h2 {
@@ -390,9 +390,10 @@ body {
   flex: 1;
   display: grid;
   grid-template-columns: 220px 1fr;
-  gap: 28px;
-  align-items: center;
+  gap: 24px;
+  align-items: start;
   justify-content: center;
+  padding-top: 6px;
   animation: screenEnter 0.35s ease;
 }
 
@@ -400,8 +401,9 @@ body {
   background: linear-gradient(180deg, rgba(248, 250, 252, 0.98), rgba(241, 245, 249, 0.98));
   border: 1px solid #e5e7eb;
   border-radius: 26px;
-  padding: 24px;
+  padding: 20px;
   text-align: center;
+  align-self: start;
 }
 
 .current-number-card {
@@ -439,11 +441,12 @@ body {
   background: linear-gradient(180deg, rgba(248, 250, 252, 0.98), rgba(241, 245, 249, 0.98));
   border: 1px solid #e5e7eb;
   border-radius: 28px;
-  padding: 24px 18px;
+  padding: 18px 18px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   overflow: hidden;
+  align-self: start;
 }
 
 .sorting-board {
@@ -846,6 +849,7 @@ body {
   .sorting-game-layout {
     grid-template-columns: 1fr;
     justify-items: center;
+    align-items: start;
   }
 
   .sorting-side-panel {
@@ -894,9 +898,10 @@ body {
   }
 
   .sorting-game-layout {
-    gap: 20px;
+    gap: 18px;
     justify-items: center;
     align-items: start;
+    padding-top: 0;
   }
 
   .sorting-side-panel {
@@ -912,7 +917,7 @@ body {
 
   .sorting-board-shell {
     width: 100%;
-    padding: 16px 10px;
+    padding: 12px 10px;
   }
 
   .sorting-board {

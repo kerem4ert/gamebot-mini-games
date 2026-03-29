@@ -37,58 +37,280 @@ const blockPuzzleStatus = document.getElementById("blockPuzzleStatus");
 const closeBlockPuzzleButton = document.getElementById("closeBlockPuzzleButton");
 const restartBlockPuzzleButton = document.getElementById("restartBlockPuzzleButton");
 
-const quizQuestions = [
-  {
-    question: "Which country has the larger population?",
-    options: {
-      A: "Germany",
-      B: "Brazil",
-      C: "Japan",
-      D: "Canada"
+const quizTests = [
+  [
+    {
+      question: "Which country has the larger population?",
+      options: { A: "Germany", B: "Brazil", C: "Japan", D: "Canada" },
+      correctAnswer: "B"
     },
-    correctAnswer: "B"
-  },
-  {
-    question: "Which ocean is the largest on Earth?",
-    options: {
-      A: "Atlantic Ocean",
-      B: "Indian Ocean",
-      C: "Pacific Ocean",
-      D: "Arctic Ocean"
+    {
+      question: "Which ocean is the largest on Earth?",
+      options: { A: "Atlantic Ocean", B: "Indian Ocean", C: "Pacific Ocean", D: "Arctic Ocean" },
+      correctAnswer: "C"
     },
-    correctAnswer: "C"
-  },
-  {
-    question: "Which city is the capital of Australia?",
-    options: {
-      A: "Sydney",
-      B: "Melbourne",
-      C: "Canberra",
-      D: "Perth"
+    {
+      question: "Which city is the capital of Australia?",
+      options: { A: "Sydney", B: "Melbourne", C: "Canberra", D: "Perth" },
+      correctAnswer: "C"
     },
-    correctAnswer: "C"
-  },
-  {
-    question: "Which planet is known for having the most visible rings?",
-    options: {
-      A: "Mars",
-      B: "Saturn",
-      C: "Venus",
-      D: "Mercury"
+    {
+      question: "Which planet is known for having the most visible rings?",
+      options: { A: "Mars", B: "Saturn", C: "Venus", D: "Mercury" },
+      correctAnswer: "B"
     },
-    correctAnswer: "B"
-  },
-  {
-    question: "Which country has more people?",
-    options: {
-      A: "India",
-      B: "Russia",
-      C: "Mexico",
-      D: "France"
+    {
+      question: "Which country has more people?",
+      options: { A: "India", B: "Russia", C: "Mexico", D: "France" },
+      correctAnswer: "A"
+    }
+  ],
+  [
+    {
+      question: "Which gas do plants absorb from the atmosphere?",
+      options: { A: "Oxygen", B: "Nitrogen", C: "Carbon Dioxide", D: "Hydrogen" },
+      correctAnswer: "C"
     },
-    correctAnswer: "A"
-  }
+    {
+      question: "How many continents are there on Earth?",
+      options: { A: "5", B: "6", C: "7", D: "8" },
+      correctAnswer: "C"
+    },
+    {
+      question: "Which animal is known as the king of the jungle?",
+      options: { A: "Tiger", B: "Lion", C: "Elephant", D: "Wolf" },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which is the smallest prime number?",
+      options: { A: "0", B: "1", C: "2", D: "3" },
+      correctAnswer: "C"
+    },
+    {
+      question: "Which country is famous for the pyramids?",
+      options: { A: "Mexico", B: "Egypt", C: "Greece", D: "Peru" },
+      correctAnswer: "B"
+    }
+  ],
+  [
+    {
+      question: "Which instrument has black and white keys?",
+      options: { A: "Guitar", B: "Drum", C: "Piano", D: "Violin" },
+      correctAnswer: "C"
+    },
+    {
+      question: "What is the boiling point of water at sea level?",
+      options: { A: "50°C", B: "75°C", C: "90°C", D: "100°C" },
+      correctAnswer: "D"
+    },
+    {
+      question: "Which language is primarily spoken in Brazil?",
+      options: { A: "Spanish", B: "Portuguese", C: "French", D: "English" },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which shape has three sides?",
+      options: { A: "Square", B: "Circle", C: "Triangle", D: "Rectangle" },
+      correctAnswer: "C"
+    },
+    {
+      question: "Which star is at the center of our solar system?",
+      options: { A: "Polaris", B: "Sirius", C: "The Sun", D: "Mars" },
+      correctAnswer: "C"
+    }
+  ],
+  [
+    {
+      question: "Which country is home to the city of Tokyo?",
+      options: { A: "China", B: "South Korea", C: "Japan", D: "Thailand" },
+      correctAnswer: "C"
+    },
+    {
+      question: "Which metal is liquid at room temperature?",
+      options: { A: "Iron", B: "Mercury", C: "Silver", D: "Aluminum" },
+      correctAnswer: "B"
+    },
+    {
+      question: "How many days are there in a leap year?",
+      options: { A: "365", B: "366", C: "364", D: "367" },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which organ pumps blood through the body?",
+      options: { A: "Liver", B: "Lung", C: "Heart", D: "Kidney" },
+      correctAnswer: "C"
+    },
+    {
+      question: "Which sport uses a racket and a shuttlecock?",
+      options: { A: "Tennis", B: "Badminton", C: "Basketball", D: "Baseball" },
+      correctAnswer: "B"
+    }
+  ],
+  [
+    {
+      question: "Which country is known for the Eiffel Tower?",
+      options: { A: "Italy", B: "Spain", C: "France", D: "Belgium" },
+      correctAnswer: "C"
+    },
+    {
+      question: "What is the largest mammal in the world?",
+      options: { A: "Elephant", B: "Blue Whale", C: "Giraffe", D: "Hippopotamus" },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which planet is closest to the Sun?",
+      options: { A: "Mercury", B: "Venus", C: "Earth", D: "Mars" },
+      correctAnswer: "A"
+    },
+    {
+      question: "Which number comes after 99?",
+      options: { A: "100", B: "101", C: "98", D: "110" },
+      correctAnswer: "A"
+    },
+    {
+      question: "Which bird is often associated with peace?",
+      options: { A: "Eagle", B: "Crow", C: "Dove", D: "Falcon" },
+      correctAnswer: "C"
+    }
+  ],
+  [
+    {
+      question: "Which is the largest desert in the world?",
+      options: { A: "Sahara", B: "Gobi", C: "Antarctic Desert", D: "Arabian Desert" },
+      correctAnswer: "C"
+    },
+    {
+      question: "What do bees primarily make?",
+      options: { A: "Milk", B: "Honey", C: "Wax paper", D: "Silk" },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which continent is Egypt located in?",
+      options: { A: "Asia", B: "Europe", C: "South America", D: "Africa" },
+      correctAnswer: "D"
+    },
+    {
+      question: "Which month has the fewest days?",
+      options: { A: "January", B: "February", C: "April", D: "June" },
+      correctAnswer: "B"
+    },
+    {
+      question: "What is 12 × 12?",
+      options: { A: "124", B: "122", C: "144", D: "132" },
+      correctAnswer: "C"
+    }
+  ],
+  [
+    {
+      question: "Which animal can live both on land and in water?",
+      options: { A: "Frog", B: "Eagle", C: "Camel", D: "Shark" },
+      correctAnswer: "A"
+    },
+    {
+      question: "Which country has Rome as its capital?",
+      options: { A: "Portugal", B: "Italy", C: "Austria", D: "Hungary" },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which part of the plant usually grows underground?",
+      options: { A: "Leaf", B: "Flower", C: "Root", D: "Fruit" },
+      correctAnswer: "C"
+    },
+    {
+      question: "How many hours are there in one day?",
+      options: { A: "12", B: "18", C: "24", D: "36" },
+      correctAnswer: "C"
+    },
+    {
+      question: "Which country is famous for sushi?",
+      options: { A: "Japan", B: "India", C: "Turkey", D: "Canada" },
+      correctAnswer: "A"
+    }
+  ],
+  [
+    {
+      question: "Which is the fastest land animal?",
+      options: { A: "Cheetah", B: "Horse", C: "Leopard", D: "Wolf" },
+      correctAnswer: "A"
+    },
+    {
+      question: "Which device is mainly used to call people?",
+      options: { A: "Microwave", B: "Telephone", C: "Toaster", D: "Printer" },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which is the largest planet in our solar system?",
+      options: { A: "Earth", B: "Mars", C: "Jupiter", D: "Neptune" },
+      correctAnswer: "C"
+    },
+    {
+      question: "Which color do you get by mixing red and blue?",
+      options: { A: "Green", B: "Purple", C: "Orange", D: "Brown" },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which country has maple leaf on its flag?",
+      options: { A: "Canada", B: "Sweden", C: "Norway", D: "Finland" },
+      correctAnswer: "A"
+    }
+  ],
+  [
+    {
+      question: "Which body part is used for hearing?",
+      options: { A: "Eye", B: "Ear", C: "Nose", D: "Hand" },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which planet is called the Red Planet?",
+      options: { A: "Mars", B: "Venus", C: "Saturn", D: "Uranus" },
+      correctAnswer: "A"
+    },
+    {
+      question: "Which season comes after summer?",
+      options: { A: "Spring", B: "Winter", C: "Autumn", D: "Monsoon" },
+      correctAnswer: "C"
+    },
+    {
+      question: "Which animal is famous for carrying its house on its back?",
+      options: { A: "Snail", B: "Rabbit", C: "Cat", D: "Fox" },
+      correctAnswer: "A"
+    },
+    {
+      question: "Which country is Madrid the capital of?",
+      options: { A: "Spain", B: "France", C: "Italy", D: "Portugal" },
+      correctAnswer: "A"
+    }
+  ],
+  [
+    {
+      question: "What is the freezing point of water?",
+      options: { A: "0°C", B: "10°C", C: "32°C", D: "100°C" },
+      correctAnswer: "A"
+    },
+    {
+      question: "Which famous structure is in India?",
+      options: { A: "Colosseum", B: "Taj Mahal", C: "Big Ben", D: "Statue of Liberty" },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which is the longest river in the world in many school quizzes?",
+      options: { A: "Amazon", B: "Nile", C: "Danube", D: "Yangtze" },
+      correctAnswer: "B"
+    },
+    {
+      question: "Which classroom subject usually involves experiments?",
+      options: { A: "Science", B: "History", C: "Literature", D: "Art" },
+      correctAnswer: "A"
+    },
+    {
+      question: "Which fruit is yellow and curved?",
+      options: { A: "Apple", B: "Banana", C: "Pear", D: "Cherry" },
+      correctAnswer: "B"
+    }
+  ]
 ];
+
+let activeQuizQuestions = [];
 
 let mode = "menu";
 let botQueue = Promise.resolve();
@@ -517,6 +739,15 @@ function getRankingMessage(score, total) {
   return "Good start. Keep practicing and come back stronger for the next test.";
 }
 
+function getRandomQuizTest() {
+  const randomIndex = Math.floor(Math.random() * quizTests.length);
+  return quizTests[randomIndex].map((question) => ({
+    question: question.question,
+    options: { ...question.options },
+    correctAnswer: question.correctAnswer
+  }));
+}
+
 function startQuizGame() {
   clearBotQueue();
 
@@ -525,6 +756,7 @@ function startQuizGame() {
   quizScore = 0;
   quizAnswers = [];
   quizLocked = false;
+  activeQuizQuestions = getRandomQuizTest();
 
   quizMainCard.classList.remove("hidden");
   quizResults.classList.add("hidden");
@@ -536,9 +768,9 @@ function startQuizGame() {
 }
 
 function renderQuizQuestion() {
-  const currentQuestion = quizQuestions[currentQuestionIndex];
+  const currentQuestion = activeQuizQuestions[currentQuestionIndex];
 
-  quizProgress.textContent = `Question ${currentQuestionIndex + 1} of ${quizQuestions.length}`;
+  quizProgress.textContent = `Question ${currentQuestionIndex + 1} of ${activeQuizQuestions.length}`;
   quizQuestion.textContent = currentQuestion.question;
   quizOptions.innerHTML = "";
   quizFeedback.textContent = "";
@@ -560,7 +792,7 @@ async function handleQuizOptionClick(selectedLetter, selectedButton) {
   if (quizLocked) return;
   quizLocked = true;
 
-  const currentQuestion = quizQuestions[currentQuestionIndex];
+  const currentQuestion = activeQuizQuestions[currentQuestionIndex];
   const correctLetter = currentQuestion.correctAnswer;
   const optionButtons = [...quizOptions.children];
 
@@ -604,7 +836,7 @@ async function handleQuizOptionClick(selectedLetter, selectedButton) {
 
   currentQuestionIndex++;
 
-  if (currentQuestionIndex < quizQuestions.length) {
+  if (currentQuestionIndex < activeQuizQuestions.length) {
     renderQuizQuestion();
   } else {
     showQuizResults();
@@ -616,8 +848,8 @@ function showQuizResults() {
   quizResults.classList.remove("hidden");
 
   quizFinalTitle.textContent = "Quiz Completed";
-  quizFinalScore.textContent = `${quizScore} / ${quizQuestions.length}`;
-  quizRankingText.textContent = getRankingMessage(quizScore, quizQuestions.length);
+  quizFinalScore.textContent = `${quizScore} / ${activeQuizQuestions.length}`;
+  quizRankingText.textContent = getRankingMessage(quizScore, activeQuizQuestions.length);
 
   quizReviewList.innerHTML = "";
 
@@ -763,12 +995,51 @@ function getRandomBlockShape() {
   return blockShapes[randomIndex].map((row) => [...row]);
 }
 
+function getRandomPlayableBlockShape() {
+  const shuffledShapes = [...blockShapes].sort(() => Math.random() - 0.5);
+
+  for (const shape of shuffledShapes) {
+    if (canShapeFitAnywhere(shape)) {
+      return shape.map((row) => [...row]);
+    }
+  }
+
+  return null;
+}
+
+function canShapeFitAnywhere(shape) {
+  for (let row = 0; row < BLOCK_BOARD_SIZE; row++) {
+    for (let col = 0; col < BLOCK_BOARD_SIZE; col++) {
+      if (canPlaceBlock(shape, row, col)) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
+function generatePlayableBlockPieces() {
+  const guaranteedShape = getRandomPlayableBlockShape();
+
+  if (!guaranteedShape) {
+    return [];
+  }
+
+  const pieces = [{ shape: guaranteedShape, used: false }];
+
+  for (let i = 0; i < 2; i++) {
+    pieces.push({
+      shape: getRandomBlockShape(),
+      used: false
+    });
+  }
+
+  return pieces.sort(() => Math.random() - 0.5);
+}
+
 function generateBlockPieces() {
-  blockCurrentPieces = [
-    { shape: getRandomBlockShape(), used: false },
-    { shape: getRandomBlockShape(), used: false },
-    { shape: getRandomBlockShape(), used: false }
-  ];
+  blockCurrentPieces = generatePlayableBlockPieces();
   blockSelectedPieceIndex = null;
   renderBlockPieces();
 }
@@ -962,8 +1233,12 @@ function areAllBlockPiecesUsed() {
   return blockCurrentPieces.every((piece) => piece.used);
 }
 
-function hasAnyValidMove() {
+function hasAnyValidMoveForCurrentPieces() {
   const remainingPieces = blockCurrentPieces.filter((piece) => !piece.used);
+
+  if (remainingPieces.length === 0) {
+    return true;
+  }
 
   for (const piece of remainingPieces) {
     for (let row = 0; row < BLOCK_BOARD_SIZE; row++) {
@@ -976,6 +1251,21 @@ function hasAnyValidMove() {
   }
 
   return false;
+}
+
+function finishBlockPuzzleGame() {
+  if (blockGameOver) return;
+
+  blockGameOver = true;
+  blockSelectedPieceIndex = null;
+  renderBlockPieces();
+  clearBlockPreview();
+
+  queueBotReplies([
+    `Game over. Your block puzzle score is ${blockScore}.`,
+    "There are no more valid moves left for the remaining blocks.",
+    "Press Restart to play again or X to return to the chat."
+  ]);
 }
 
 function handleBlockBoardClick(row, col) {
@@ -1023,18 +1313,21 @@ function handleBlockBoardClick(row, col) {
   clearBlockPreview();
 
   if (areAllBlockPiecesUsed()) {
-    generateBlockPieces();
+    const nextPieces = generatePlayableBlockPieces();
+
+    if (nextPieces.length === 0) {
+      finishBlockPuzzleGame();
+      return;
+    }
+
+    blockCurrentPieces = nextPieces;
+    renderBlockPieces();
     updateBlockPuzzleStatus("New blocks generated");
+    return;
   }
 
-  if (!hasAnyValidMove()) {
-    blockGameOver = true;
-
-    queueBotReplies([
-      `Game over. Your block puzzle score is ${blockScore}.`,
-      "There are no more valid moves left.",
-      "Press Restart to play again or X to return to the chat."
-    ]);
+  if (!hasAnyValidMoveForCurrentPieces()) {
+    finishBlockPuzzleGame();
   }
 }
 
