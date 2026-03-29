@@ -3,7 +3,7 @@
 GameBot is a responsive mini games web app where users choose a game through a chat-style interface and play directly in the browser.
 
 ## 🌐 Live Demo
-[https://YOUR-USERNAME.github.io/YOUR-REPO-NAME](https://kerem4ert.github.io/gamebot-mini-games/)/
+[Gamebot Mini Games](https://kerem4ert.github.io/gamebot-mini-games/)/
 
 ## 🚀 Features
 - Chat-based game selection
