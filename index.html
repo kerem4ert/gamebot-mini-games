@@ -98,6 +98,42 @@
         </div>
       </div>
     </div>
+
+    <div class="game-screen hidden" id="blockPuzzleScreen">
+      <div class="game-topbar">
+        <div>
+          <h2>Block Puzzle</h2>
+          <p>Choose a block, then place it on the 8x8 board. Fill rows or columns to clear them.</p>
+        </div>
+        <div class="topbar-actions">
+          <button class="secondary-button" id="restartBlockPuzzleButton">Restart</button>
+          <button class="close-game-button" id="closeBlockPuzzleButton">✕</button>
+        </div>
+      </div>
+
+      <div class="block-puzzle-layout">
+        <div class="block-puzzle-side">
+          <div class="block-score-card">
+            <h3>Score</h3>
+            <div class="block-score-value" id="blockPuzzleScore">0</div>
+          </div>
+
+          <div class="block-score-card">
+            <h3>Status</h3>
+            <div class="block-status-text" id="blockPuzzleStatus">Select a block to start</div>
+          </div>
+        </div>
+
+        <div class="block-puzzle-main">
+          <div class="block-board" id="blockBoard"></div>
+
+          <div class="block-pieces-panel">
+            <h3>Available Blocks</h3>
+            <div class="block-pieces-row" id="blockPiecesRow"></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script src="script.js"></script>
