@@ -1,38 +1,51 @@
-# GameBot Mini Games
+# 🎮 GameBot
 
-An interactive mini games web app built with HTML, CSS, and JavaScript.
+GameBot is a responsive mini games web app where users choose a game through a chat-style interface and play directly in the browser.
 
-## Features
+## 🌐 Live Demo
+[https://YOUR-USERNAME.github.io/YOUR-REPO-NAME](https://kerem4ert.github.io/gamebot-mini-games/)/
 
-- Chat-style game selection interface
-- General knowledge quiz with clickable answers
-- Number sorting challenge with multiple difficulty ranges
+## 🚀 Features
+- Chat-based game selection
+- Typing animation for bot responses
 - Responsive design for desktop and mobile
-- Typing animation for bot messages
-- Restart and exit controls for each game
-- Clean and modern user interface
+- Multiple mini games in one project
 
-## Games
+## 🕹️ Games Included
 
 ### General Knowledge Quiz
-- 5 multiple-choice questions
-- Clickable answer options
-- Instant feedback after each answer
-- Final score and motivational ranking message
-- Answer review screen at the end
+- 10 different prepared quiz sets
+- Each play session loads 1 random 5-question test
+- Multiple-choice answers
+- Instant feedback after each question
+- Final score and answer review section
 
 ### Number Sorting Challenge
-- Choose a difficulty range:
-  - 1 - 25
-  - 1 - 50
-  - 1 - 100
-- Place random numbers into 10 boxes
-- Keep the full sequence in ascending order from left to right
-- Each number appears only once
-- Lose immediately if the order breaks
+- Choose a number range: 1–25, 1–50, or 1–100
+- Place numbers in ascending order from left to right
+- Strategic thinking and risk management
+- Win/lose feedback at the end of the game
 
-## Technologies Used
+### Block Puzzle
+- 8x8 puzzle board
+- Place block shapes on the board
+- Clear full rows and columns
+- Score system based on placed blocks and cleared lines
+- Game ends when no valid moves remain
+- New generated pieces always include at least one playable option
 
+## 🛠️ Technologies Used
 - HTML5
 - CSS3
-- JavaScript
+- Vanilla JavaScript
+
+## 📱 Responsive Design
+The project is designed to work smoothly on both desktop and mobile devices with adaptive layouts and game sections.
+
+## 🎯 What This Project Demonstrates
+- DOM manipulation
+- Event-driven programming
+- Game logic development
+- State management
+- Dynamic rendering
+- Responsive UI design
