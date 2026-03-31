@@ -3,10 +3,7 @@ const chatMessages = document.getElementById("chatMessages");
 const messageInput = document.getElementById("messageInput");
 const sendButton = document.getElementById("sendButton");
 const soundToggleButton = document.getElementById("soundToggleButton");
-
-const totalPlaysValue = document.getElementById("totalPlaysValue");
-const achievementCountValue = document.getElementById("achievementCountValue");
-const bestBlockValue = document.getElementById("bestBlockValue");
+const chatHeaderSubtitle = document.getElementById("chatHeaderSubtitle");
 
 const sortingScreen = document.getElementById("sortingScreen");
 const sortingBoard = document.getElementById("sortingBoard");
@@ -49,133 +46,67 @@ const blockTotalClearsValue = document.getElementById("blockTotalClearsValue");
 const closeBlockPuzzleButton = document.getElementById("closeBlockPuzzleButton");
 const restartBlockPuzzleButton = document.getElementById("restartBlockPuzzleButton");
 
-/* Quiz bank: 12 separate prepared tests */
+const sortingTitle = document.getElementById("sortingTitle");
+const sortingDescription = document.getElementById("sortingDescription");
+const sortingSetupTitle = document.getElementById("sortingSetupTitle");
+const sortingSetupDescription = document.getElementById("sortingSetupDescription");
+const sortingPanelLabel = document.getElementById("sortingPanelLabel");
+const sortingWinsLabel = document.getElementById("sortingWinsLabel");
+const sortingBestRangeLabel = document.getElementById("sortingBestRangeLabel");
+
+const quizTitle = document.getElementById("quizTitle");
+const quizDescription = document.getElementById("quizDescription");
+
+const blockTitle = document.getElementById("blockTitle");
+const blockDescription = document.getElementById("blockDescription");
+const blockScoreLabel = document.getElementById("blockScoreLabel");
+const blockBestScoreLabel = document.getElementById("blockBestScoreLabel");
+const blockStatusLabel = document.getElementById("blockStatusLabel");
+const blockLinesLabel = document.getElementById("blockLinesLabel");
+const blockPiecesTitle = document.getElementById("blockPiecesTitle");
+
+/* Quiz bank */
 const quizTestBank = [
   {
     id: "mixed_1",
     category: "mixed",
     title: "World Basics I",
+    title_tr: "Dünya Bilgisi I",
     questions: [
       {
         question: "Which ocean is the largest on Earth?",
+        question_tr: "Dünyadaki en büyük okyanus hangisidir?",
         options: { A: "Atlantic Ocean", B: "Indian Ocean", C: "Pacific Ocean", D: "Arctic Ocean" },
+        options_tr: { A: "Atlas Okyanusu", B: "Hint Okyanusu", C: "Pasifik Okyanusu", D: "Arktik Okyanusu" },
         correctAnswer: "C"
       },
       {
         question: "Which city is the capital of Australia?",
+        question_tr: "Avustralya'nın başkenti hangi şehirdir?",
         options: { A: "Sydney", B: "Melbourne", C: "Canberra", D: "Perth" },
+        options_tr: { A: "Sydney", B: "Melbourne", C: "Canberra", D: "Perth" },
         correctAnswer: "C"
       },
       {
         question: "Which country has the larger population?",
+        question_tr: "Hangi ülkenin nüfusu daha fazladır?",
         options: { A: "Germany", B: "Brazil", C: "Japan", D: "Canada" },
+        options_tr: { A: "Almanya", B: "Brezilya", C: "Japonya", D: "Kanada" },
         correctAnswer: "B"
       },
       {
         question: "Which planet is known for having the most visible rings?",
+        question_tr: "En görünür halkalara sahip gezegen hangisidir?",
         options: { A: "Mars", B: "Saturn", C: "Venus", D: "Mercury" },
+        options_tr: { A: "Mars", B: "Satürn", C: "Venüs", D: "Merkür" },
         correctAnswer: "B"
       },
       {
         question: "Which country has more people?",
+        question_tr: "Hangi ülkenin nüfusu daha fazladır?",
         options: { A: "India", B: "Russia", C: "Mexico", D: "France" },
+        options_tr: { A: "Hindistan", B: "Rusya", C: "Meksika", D: "Fransa" },
         correctAnswer: "A"
-      }
-    ]
-  },
-  {
-    id: "mixed_2",
-    category: "mixed",
-    title: "World Basics II",
-    questions: [
-      {
-        question: "Which country is famous for the Eiffel Tower?",
-        options: { A: "Italy", B: "Spain", C: "France", D: "Belgium" },
-        correctAnswer: "C"
-      },
-      {
-        question: "What is the largest mammal in the world?",
-        options: { A: "Elephant", B: "Blue Whale", C: "Giraffe", D: "Hippopotamus" },
-        correctAnswer: "B"
-      },
-      {
-        question: "Which number comes after 99?",
-        options: { A: "100", B: "101", C: "98", D: "110" },
-        correctAnswer: "A"
-      },
-      {
-        question: "Which instrument has black and white keys?",
-        options: { A: "Guitar", B: "Drum", C: "Piano", D: "Violin" },
-        correctAnswer: "C"
-      },
-      {
-        question: "Which bird is often associated with peace?",
-        options: { A: "Eagle", B: "Crow", C: "Dove", D: "Falcon" },
-        correctAnswer: "C"
-      }
-    ]
-  },
-  {
-    id: "mixed_3",
-    category: "mixed",
-    title: "Everyday Knowledge",
-    questions: [
-      {
-        question: "How many continents are there on Earth?",
-        options: { A: "5", B: "6", C: "7", D: "8" },
-        correctAnswer: "C"
-      },
-      {
-        question: "Which shape has three sides?",
-        options: { A: "Square", B: "Circle", C: "Triangle", D: "Rectangle" },
-        correctAnswer: "C"
-      },
-      {
-        question: "How many hours are there in one day?",
-        options: { A: "12", B: "18", C: "24", D: "36" },
-        correctAnswer: "C"
-      },
-      {
-        question: "Which animal can live both on land and in water?",
-        options: { A: "Frog", B: "Eagle", C: "Camel", D: "Shark" },
-        correctAnswer: "A"
-      },
-      {
-        question: "Which device is mainly used to call people?",
-        options: { A: "Microwave", B: "Telephone", C: "Toaster", D: "Printer" },
-        correctAnswer: "B"
-      }
-    ]
-  },
-  {
-    id: "mixed_4",
-    category: "mixed",
-    title: "General Facts",
-    questions: [
-      {
-        question: "Which famous structure is in India?",
-        options: { A: "Colosseum", B: "Taj Mahal", C: "Big Ben", D: "Statue of Liberty" },
-        correctAnswer: "B"
-      },
-      {
-        question: "Which fruit is yellow and curved?",
-        options: { A: "Apple", B: "Banana", C: "Pear", D: "Cherry" },
-        correctAnswer: "B"
-      },
-      {
-        question: "Which animal is famous for carrying its house on its back?",
-        options: { A: "Snail", B: "Rabbit", C: "Cat", D: "Fox" },
-        correctAnswer: "A"
-      },
-      {
-        question: "Which season comes after summer?",
-        options: { A: "Spring", B: "Winter", C: "Autumn", D: "Monsoon" },
-        correctAnswer: "C"
-      },
-      {
-        question: "Which body part is used for hearing?",
-        options: { A: "Eye", B: "Ear", C: "Nose", D: "Hand" },
-        correctAnswer: "B"
       }
     ]
   },
@@ -183,127 +114,42 @@ const quizTestBank = [
     id: "science_1",
     category: "science",
     title: "Science Set I",
+    title_tr: "Bilim Seti I",
     questions: [
       {
         question: "Which gas do plants absorb from the atmosphere?",
+        question_tr: "Bitkiler atmosferden hangi gazı alır?",
         options: { A: "Oxygen", B: "Nitrogen", C: "Carbon Dioxide", D: "Hydrogen" },
+        options_tr: { A: "Oksijen", B: "Azot", C: "Karbondioksit", D: "Hidrojen" },
         correctAnswer: "C"
       },
       {
         question: "What is the boiling point of water at sea level?",
+        question_tr: "Deniz seviyesinde suyun kaynama noktası kaç derecedir?",
         options: { A: "50°C", B: "75°C", C: "90°C", D: "100°C" },
+        options_tr: { A: "50°C", B: "75°C", C: "90°C", D: "100°C" },
         correctAnswer: "D"
       },
       {
         question: "Which star is at the center of our solar system?",
+        question_tr: "Güneş sistemimizin merkezindeki yıldız hangisidir?",
         options: { A: "Polaris", B: "Sirius", C: "The Sun", D: "Mars" },
+        options_tr: { A: "Kutup Yıldızı", B: "Sirius", C: "Güneş", D: "Mars" },
         correctAnswer: "C"
       },
       {
         question: "Which metal is liquid at room temperature?",
+        question_tr: "Oda sıcaklığında sıvı olan metal hangisidir?",
         options: { A: "Iron", B: "Mercury", C: "Silver", D: "Aluminum" },
+        options_tr: { A: "Demir", B: "Cıva", C: "Gümüş", D: "Alüminyum" },
         correctAnswer: "B"
       },
       {
         question: "Which organ pumps blood through the body?",
+        question_tr: "Vücuda kan pompalayan organ hangisidir?",
         options: { A: "Liver", B: "Lung", C: "Heart", D: "Kidney" },
+        options_tr: { A: "Karaciğer", B: "Akciğer", C: "Kalp", D: "Böbrek" },
         correctAnswer: "C"
-      }
-    ]
-  },
-  {
-    id: "science_2",
-    category: "science",
-    title: "Science Set II",
-    questions: [
-      {
-        question: "Which is the smallest prime number?",
-        options: { A: "0", B: "1", C: "2", D: "3" },
-        correctAnswer: "C"
-      },
-      {
-        question: "Which planet is closest to the Sun?",
-        options: { A: "Mercury", B: "Venus", C: "Earth", D: "Mars" },
-        correctAnswer: "A"
-      },
-      {
-        question: "What is 12 × 12?",
-        options: { A: "124", B: "122", C: "144", D: "132" },
-        correctAnswer: "C"
-      },
-      {
-        question: "What is the freezing point of water?",
-        options: { A: "0°C", B: "10°C", C: "32°C", D: "100°C" },
-        correctAnswer: "A"
-      },
-      {
-        question: "Which classroom subject usually involves experiments?",
-        options: { A: "Science", B: "History", C: "Literature", D: "Art" },
-        correctAnswer: "A"
-      }
-    ]
-  },
-  {
-    id: "science_3",
-    category: "science",
-    title: "Science Set III",
-    questions: [
-      {
-        question: "Which body part helps you smell?",
-        options: { A: "Ear", B: "Eye", C: "Nose", D: "Foot" },
-        correctAnswer: "C"
-      },
-      {
-        question: "Which color do you get by mixing red and blue?",
-        options: { A: "Green", B: "Purple", C: "Orange", D: "Brown" },
-        correctAnswer: "B"
-      },
-      {
-        question: "Which part of the plant usually grows underground?",
-        options: { A: "Leaf", B: "Flower", C: "Root", D: "Fruit" },
-        correctAnswer: "C"
-      },
-      {
-        question: "Which is the fastest land animal?",
-        options: { A: "Cheetah", B: "Horse", C: "Leopard", D: "Wolf" },
-        correctAnswer: "A"
-      },
-      {
-        question: "Which is the largest planet in our solar system?",
-        options: { A: "Earth", B: "Mars", C: "Jupiter", D: "Neptune" },
-        correctAnswer: "C"
-      }
-    ]
-  },
-  {
-    id: "science_4",
-    category: "science",
-    title: "Science Set IV",
-    questions: [
-      {
-        question: "Which planet is called the Red Planet?",
-        options: { A: "Mars", B: "Venus", C: "Saturn", D: "Uranus" },
-        correctAnswer: "A"
-      },
-      {
-        question: "Which animal is known as the king of the jungle?",
-        options: { A: "Tiger", B: "Lion", C: "Elephant", D: "Wolf" },
-        correctAnswer: "B"
-      },
-      {
-        question: "What do bees primarily make?",
-        options: { A: "Milk", B: "Honey", C: "Wax paper", D: "Silk" },
-        correctAnswer: "B"
-      },
-      {
-        question: "How many days are there in a leap year?",
-        options: { A: "365", B: "366", C: "364", D: "367" },
-        correctAnswer: "B"
-      },
-      {
-        question: "Which month has the fewest days?",
-        options: { A: "January", B: "February", C: "April", D: "June" },
-        correctAnswer: "B"
       }
     ]
   },
@@ -311,126 +157,41 @@ const quizTestBank = [
     id: "geography_1",
     category: "geography",
     title: "Geography Set I",
+    title_tr: "Coğrafya Seti I",
     questions: [
       {
         question: "Which country is home to the city of Tokyo?",
+        question_tr: "Tokyo hangi ülkededir?",
         options: { A: "China", B: "South Korea", C: "Japan", D: "Thailand" },
+        options_tr: { A: "Çin", B: "Güney Kore", C: "Japonya", D: "Tayland" },
         correctAnswer: "C"
       },
       {
         question: "Which country is famous for the pyramids?",
+        question_tr: "Piramitleriyle ünlü ülke hangisidir?",
         options: { A: "Mexico", B: "Egypt", C: "Greece", D: "Peru" },
+        options_tr: { A: "Meksika", B: "Mısır", C: "Yunanistan", D: "Peru" },
         correctAnswer: "B"
       },
       {
         question: "Which language is primarily spoken in Brazil?",
+        question_tr: "Brezilya'da ağırlıklı olarak hangi dil konuşulur?",
         options: { A: "Spanish", B: "Portuguese", C: "French", D: "English" },
+        options_tr: { A: "İspanyolca", B: "Portekizce", C: "Fransızca", D: "İngilizce" },
         correctAnswer: "B"
       },
       {
         question: "Which continent is Egypt located in?",
+        question_tr: "Mısır hangi kıtadadır?",
         options: { A: "Asia", B: "Europe", C: "South America", D: "Africa" },
+        options_tr: { A: "Asya", B: "Avrupa", C: "Güney Amerika", D: "Afrika" },
         correctAnswer: "D"
       },
       {
         question: "Which country has Rome as its capital?",
+        question_tr: "Başkenti Roma olan ülke hangisidir?",
         options: { A: "Portugal", B: "Italy", C: "Austria", D: "Hungary" },
-        correctAnswer: "B"
-      }
-    ]
-  },
-  {
-    id: "geography_2",
-    category: "geography",
-    title: "Geography Set II",
-    questions: [
-      {
-        question: "Which country is famous for sushi?",
-        options: { A: "Japan", B: "India", C: "Turkey", D: "Canada" },
-        correctAnswer: "A"
-      },
-      {
-        question: "Which country has maple leaf on its flag?",
-        options: { A: "Canada", B: "Sweden", C: "Norway", D: "Finland" },
-        correctAnswer: "A"
-      },
-      {
-        question: "Which country is Madrid the capital of?",
-        options: { A: "Spain", B: "France", C: "Italy", D: "Portugal" },
-        correctAnswer: "A"
-      },
-      {
-        question: "Which is the largest desert in the world?",
-        options: { A: "Sahara", B: "Gobi", C: "Antarctic Desert", D: "Arabian Desert" },
-        correctAnswer: "C"
-      },
-      {
-        question: "Which is the longest river in the world in many school quizzes?",
-        options: { A: "Amazon", B: "Nile", C: "Danube", D: "Yangtze" },
-        correctAnswer: "B"
-      }
-    ]
-  },
-  {
-    id: "geography_3",
-    category: "geography",
-    title: "Geography Set III",
-    questions: [
-      {
-        question: "Which country is known for the Eiffel Tower?",
-        options: { A: "Italy", B: "Spain", C: "France", D: "Belgium" },
-        correctAnswer: "C"
-      },
-      {
-        question: "Which city is the capital of Australia?",
-        options: { A: "Sydney", B: "Melbourne", C: "Canberra", D: "Perth" },
-        correctAnswer: "C"
-      },
-      {
-        question: "Which country has more people?",
-        options: { A: "India", B: "Russia", C: "Mexico", D: "France" },
-        correctAnswer: "A"
-      },
-      {
-        question: "Which country is home to the Taj Mahal?",
-        options: { A: "India", B: "Pakistan", C: "Nepal", D: "Bangladesh" },
-        correctAnswer: "A"
-      },
-      {
-        question: "Which ocean lies between Africa, Asia, and Australia?",
-        options: { A: "Atlantic Ocean", B: "Indian Ocean", C: "Pacific Ocean", D: "Southern Ocean" },
-        correctAnswer: "B"
-      }
-    ]
-  },
-  {
-    id: "geography_4",
-    category: "geography",
-    title: "Geography Set IV",
-    questions: [
-      {
-        question: "Which country has Ottawa as its capital?",
-        options: { A: "Canada", B: "Australia", C: "United States", D: "Ireland" },
-        correctAnswer: "A"
-      },
-      {
-        question: "Which continent is Brazil in?",
-        options: { A: "Europe", B: "Africa", C: "South America", D: "Asia" },
-        correctAnswer: "C"
-      },
-      {
-        question: "Which is the smallest continent by land area?",
-        options: { A: "Europe", B: "Australia", C: "South America", D: "Antarctica" },
-        correctAnswer: "B"
-      },
-      {
-        question: "Which country has Ankara as its capital?",
-        options: { A: "Türkiye", B: "Greece", C: "Romania", D: "Bulgaria" },
-        correctAnswer: "A"
-      },
-      {
-        question: "Which country has Lisbon as its capital?",
-        options: { A: "Spain", B: "Portugal", C: "Italy", D: "Croatia" },
+        options_tr: { A: "Portekiz", B: "İtalya", C: "Avusturya", D: "Macaristan" },
         correctAnswer: "B"
       }
     ]
@@ -465,15 +226,189 @@ const ACHIEVEMENTS = [
   { id: "all_rounder", title: "All-Rounder", text: "Played all three games." }
 ];
 
-const STORAGE_KEY = "gamebot_v3_data";
+const STORAGE_KEY = "gamebot_v5_data";
 const BLOCK_BOARD_SIZE = 8;
+
+const TEXT = {
+  en: {
+    appSubtitle: "Chat a little, then jump into a game",
+    inputPlaceholder: "Type your message...",
+    botTyping: "Bot is typing...",
+    send: "Send",
+    restart: "Restart",
+    sortingTitle: "Number Sorting Challenge",
+    sortingDescription: "Drag the current number into an empty box and keep the full sequence in ascending order from left to right.",
+    sortingSetupTitle: "Select Difficulty Range",
+    sortingSetupDescription: "Choose a range to begin the challenge.",
+    sortingPanelLabel: "Drag This Number",
+    sortingWins: "Wins",
+    sortingBestRange: "Best Range",
+    selectedRange: "Selected range: 1 - {range}",
+    noRangeSelected: "No range selected",
+    startChallenge: "Start Challenge",
+    rangeBadge: "Range: {range}",
+    rangeBadgeEmpty: "Range: -",
+    quizTitle: "General Knowledge Quiz",
+    quizDescription: "Choose a category, then play one random prepared 5-question test.",
+    blockTitle: "Block Puzzle",
+    blockDescription: "Drag a block from below and drop it onto the 8x8 board. Fill full rows or columns to clear them.",
+    blockScore: "Score",
+    blockBestScore: "Best Score",
+    blockStatus: "Status",
+    blockLines: "Total Lines Cleared",
+    blockAvailable: "Available Blocks",
+    bestScoreMeta: "Best score: {score} / 5 • Plays: {plays}",
+    languageQuestion: "Please choose your language to continue.",
+    languageChooseGame: "Choose a game:",
+    english: "English",
+    turkish: "Türkçe",
+    welcome1: "Hello! Welcome to GameBot.",
+    welcome2: "I can handle simple chat and I can also launch games for you.",
+    welcome3: "You can say things like hello, how are you, quiz, number sorting, or block puzzle.",
+    wouldYouLike: "Would you like to play a game?",
+    whichGame: "Which game would you like to play?",
+    chooseGame: "Choose a game:",
+    quiz: "Quiz",
+    numberSorting: "Number Sorting",
+    blockPuzzle: "Block Puzzle",
+    randomGame: "Random Game",
+    chooseQuizCategory: "Choose a quiz category:",
+    mixed: "Mixed",
+    science: "Science",
+    geography: "Geography",
+    randomCategory: "Random Category",
+    greetingReply: "Hello! Nice to see you. Would you like to play a game?",
+    howAreYouReply: "I'm doing well, thanks for asking. Would you like to play a game?",
+    whoAreYouReply: "I'm GameBot. I can chat a little and help you start a game.",
+    help1: "I can handle very simple chat and start games for you.",
+    help2: "You can ask for Quiz, Number Sorting, Block Puzzle, or a Random Game.",
+    thanksReply: "You're welcome. Would you like to play a game?",
+    byeReply: "Goodbye! Come back when you want to play.",
+    yesReply: "Great. Which game would you like to play?",
+    noReply: "No problem. If you change your mind, I can start a game anytime.",
+    notFitReply: "I'm not the best fit for that kind of conversation. Would you like to play a game?",
+    easierChoices: "Here are easier choices:",
+    harderChoices: "Here are harder choices:",
+    quizMixed: "Quiz - Mixed",
+    quizScience: "Quiz - Science",
+    sortLose1: "Game over. {value} breaks the ascending order.",
+    sortLose2: "That number does not fit correctly in the full sequence.",
+    restartOrClose: "Press Restart to try again or X to return to the chat.",
+    sortWin1: "Amazing! You placed all 10 numbers correctly.",
+    sortWin2: "You win the number sorting game.",
+    questionXofY: "Question {current} of {total}",
+    correctAnswer: "Correct answer!",
+    wrongAnswer: "Wrong answer. The correct answer was {answer}.",
+    quizCompleted: "Quiz Completed",
+    quizYourScore: "{score} / {total}",
+    rankPerfect: "Outstanding performance. You are in the top 10% of players.",
+    rankExcellent: "Excellent result. You are in the top 20% of players.",
+    rankGreat: "Great effort. You are in the top 35% of players.",
+    rankNice: "Nice try. You are in the top 50% of players.",
+    rankStart: "Good start. Keep practicing and come back stronger for the next test.",
+    yourAnswerCorrect: "Your answer: {answer} • Correct",
+    yourAnswerWrong: "Your answer: {answer} • Correct answer: {correct}",
+    blockStartStatus: "Drag a block onto the board to begin.",
+    blockPlaced: "Block placed successfully.",
+    blockCleared: "Great move! Cleared {count} line{suffix}.",
+    blockNewPieces: "New playable blocks generated.",
+    blockGameOver1: "Game over. Your block puzzle score is {score}.",
+    blockGameOver2: "There are no more valid moves left for the remaining blocks.",
+    changeLanguageCommand: "change language"
+  },
+  tr: {
+    appSubtitle: "Biraz sohbet et, sonra oyuna geç",
+    inputPlaceholder: "Mesajını yaz...",
+    botTyping: "Bot yazıyor...",
+    send: "Gönder",
+    restart: "Yeniden Başlat",
+    sortingTitle: "Sayı Sıralama Mücadelesi",
+    sortingDescription: "Mevcut sayıyı boş bir kutuya sürükle ve dizilimi soldan sağa artan sırada tut.",
+    sortingSetupTitle: "Zorluk Aralığı Seç",
+    sortingSetupDescription: "Başlamak için bir aralık seç.",
+    sortingPanelLabel: "Bu Sayıyı Sürükle",
+    sortingWins: "Galibiyet",
+    sortingBestRange: "En İyi Aralık",
+    selectedRange: "Seçilen aralık: 1 - {range}",
+    noRangeSelected: "Aralık seçilmedi",
+    startChallenge: "Mücadeleyi Başlat",
+    rangeBadge: "Aralık: {range}",
+    rangeBadgeEmpty: "Aralık: -",
+    quizTitle: "Genel Kültür Quiz",
+    quizDescription: "Bir kategori seç ve hazırlanmış rastgele 5 soruluk testi oyna.",
+    blockTitle: "Blok Bulmaca",
+    blockDescription: "Aşağıdaki bloğu sürükleyip 8x8 tahtaya bırak. Tam satır veya sütunları doldurarak temizle.",
+    blockScore: "Skor",
+    blockBestScore: "En İyi Skor",
+    blockStatus: "Durum",
+    blockLines: "Toplam Temizlenen Çizgi",
+    blockAvailable: "Mevcut Bloklar",
+    bestScoreMeta: "En iyi skor: {score} / 5 • Oyun: {plays}",
+    languageQuestion: "Devam etmek için lütfen dil seç.",
+    languageChooseGame: "Bir oyun seç:",
+    english: "English",
+    turkish: "Türkçe",
+    welcome1: "Merhaba! GameBot'a hoş geldin.",
+    welcome2: "Temel seviyede sohbet edebilirim ve senin için oyun da başlatabilirim.",
+    welcome3: "Merhaba, nasılsın, quiz, sayı sıralama veya blok bulmaca gibi şeyler yazabilirsin.",
+    wouldYouLike: "Bir oyun oynamak ister misin?",
+    whichGame: "Hangi oyunu oynamak istersin?",
+    chooseGame: "Bir oyun seç:",
+    quiz: "Quiz",
+    numberSorting: "Sayı Sıralama",
+    blockPuzzle: "Blok Bulmaca",
+    randomGame: "Rastgele Oyun",
+    chooseQuizCategory: "Bir quiz kategorisi seç:",
+    mixed: "Karışık",
+    science: "Bilim",
+    geography: "Coğrafya",
+    randomCategory: "Rastgele Kategori",
+    greetingReply: "Merhaba! Seni görmek güzel. Bir oyun oynamak ister misin?",
+    howAreYouReply: "İyiyim, sorduğun için teşekkürler. Bir oyun oynamak ister misin?",
+    whoAreYouReply: "Ben GameBot'um. Biraz sohbet edebilirim ve oyun başlatmana yardımcı olabilirim.",
+    help1: "Çok temel sohbetleri yapabilirim ve senin için oyun başlatabilirim.",
+    help2: "Quiz, Sayı Sıralama, Blok Bulmaca veya Rastgele Oyun isteyebilirsin.",
+    thanksReply: "Rica ederim. Bir oyun oynamak ister misin?",
+    byeReply: "Görüşürüz! Oynamak istediğinde tekrar gel.",
+    yesReply: "Harika. Hangi oyunu oynamak istersin?",
+    noReply: "Sorun değil. Fikrini değiştirirsen istediğin zaman oyun başlatabilirim.",
+    notFitReply: "Bu tarz bir sohbet için en uygun bot değilim. Bir oyun oynamak ister misin?",
+    easierChoices: "Daha kolay seçenekler burada:",
+    harderChoices: "Daha zor seçenekler burada:",
+    quizMixed: "Quiz - Karışık",
+    quizScience: "Quiz - Bilim",
+    sortLose1: "Oyun bitti. {value} artan sıralamayı bozuyor.",
+    sortLose2: "Bu sayı tüm dizilim içinde doğru yere uymuyor.",
+    restartOrClose: "Tekrar denemek için Yeniden Başlat'a bas ya da sohbete dönmek için X'e tıkla.",
+    sortWin1: "Harika! 10 sayının hepsini doğru yerleştirdin.",
+    sortWin2: "Sayı sıralama oyununu kazandın.",
+    questionXofY: "Soru {current} / {total}",
+    correctAnswer: "Doğru cevap!",
+    wrongAnswer: "Yanlış cevap. Doğru cevap {answer}.",
+    quizCompleted: "Quiz Tamamlandı",
+    quizYourScore: "{score} / {total}",
+    rankPerfect: "Mükemmel performans. Oyuncuların en iyi %10'undasın.",
+    rankExcellent: "Çok iyi sonuç. Oyuncuların en iyi %20'sindesin.",
+    rankGreat: "Güzel performans. Oyuncuların en iyi %35'indesin.",
+    rankNice: "Fena değil. Oyuncuların en iyi %50'sindesin.",
+    rankStart: "İyi başlangıç. Pratik yapıp daha güçlü dönebilirsin.",
+    yourAnswerCorrect: "Cevabın: {answer} • Doğru",
+    yourAnswerWrong: "Cevabın: {answer} • Doğru cevap: {correct}",
+    blockStartStatus: "Başlamak için bir bloğu tahtaya sürükle.",
+    blockPlaced: "Blok başarıyla yerleştirildi.",
+    blockCleared: "Harika hamle! {count} çizgi temizlendi.",
+    blockNewPieces: "Yeni oynanabilir bloklar üretildi.",
+    blockGameOver1: "Oyun bitti. Blok bulmaca skorun {score}.",
+    blockGameOver2: "Kalan bloklar için artık geçerli hamle kalmadı.",
+    changeLanguageCommand: "dili değiştir"
+  }
+};
 
 let appData = getInitialAppData();
 let mode = "menu";
 let botQueue = Promise.resolve();
 let botIsBusy = false;
 let botSessionId = 0;
-let chatContext = "main";
 let audioContext = null;
 
 /* Sorting state */
@@ -511,12 +446,11 @@ let blockDragState = {
   sourceCard: null
 };
 
-/* ---------- Storage / Stats ---------- */
-
 function getInitialAppData() {
   return {
     settings: {
-      soundEnabled: true
+      soundEnabled: true,
+      language: null
     },
     stats: {
       totalPlays: 0,
@@ -548,6 +482,26 @@ function getInitialAppData() {
     },
     achievements: []
   };
+}
+
+function lang() {
+  return appData.settings.language || "en";
+}
+
+function t(key, vars = {}) {
+  const dictionary = TEXT[lang()] || TEXT.en;
+  let value = dictionary[key] ?? TEXT.en[key] ?? key;
+  Object.entries(vars).forEach(([k, v]) => {
+    value = value.replaceAll(`{${k}}`, String(v));
+  });
+  return value;
+}
+
+function localizeCategory(category) {
+  if (category === "mixed") return t("mixed");
+  if (category === "science") return t("science");
+  if (category === "geography") return t("geography");
+  return category;
 }
 
 function loadAppData() {
@@ -589,7 +543,7 @@ function loadAppData() {
       },
       achievements: Array.isArray(parsed.achievements) ? parsed.achievements : []
     };
-  } catch (error) {
+  } catch {
     appData = getInitialAppData();
   }
 }
@@ -598,16 +552,52 @@ function saveAppData() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
 }
 
-function updateHeaderStats() {
-  totalPlaysValue.textContent = appData.stats.totalPlays;
-  achievementCountValue.textContent = appData.achievements.length;
-  bestBlockValue.textContent = appData.stats.block.bestScore;
+function applyStaticTranslations() {
+  chatHeaderSubtitle.textContent = t("appSubtitle");
+  messageInput.placeholder = botIsBusy ? t("botTyping") : t("inputPlaceholder");
+  sendButton.textContent = t("send");
+
+  restartSortingGameButton.textContent = t("restart");
+  restartQuizButton.textContent = t("restart");
+  restartBlockPuzzleButton.textContent = t("restart");
+
+  sortingTitle.textContent = t("sortingTitle");
+  sortingDescription.textContent = t("sortingDescription");
+  sortingSetupTitle.textContent = t("sortingSetupTitle");
+  sortingSetupDescription.textContent = t("sortingSetupDescription");
+  sortingPanelLabel.textContent = t("sortingPanelLabel");
+  sortingWinsLabel.textContent = t("sortingWins");
+  sortingBestRangeLabel.textContent = t("sortingBestRange");
+
+  quizTitle.textContent = t("quizTitle");
+  quizDescription.textContent = t("quizDescription");
+
+  blockTitle.textContent = t("blockTitle");
+  blockDescription.textContent = t("blockDescription");
+  blockScoreLabel.textContent = t("blockScore");
+  blockBestScoreLabel.textContent = t("blockBestScore");
+  blockStatusLabel.textContent = t("blockStatus");
+  blockLinesLabel.textContent = t("blockLines");
+  blockPiecesTitle.textContent = t("blockAvailable");
+
+  updateSortingSetupUI();
+  updatePersistentGameStats();
+  if (mode === "blockPuzzle" && !blockGameOver && blockScore === 0) {
+    blockPuzzleStatus.textContent = t("blockStartStatus");
+  }
+}
+
+function updatePersistentGameStats() {
   sortingWinsValue.textContent = appData.stats.sorting.wins;
   sortingBestRangeValue.textContent = appData.stats.sorting.bestRangeWon || "-";
   blockPuzzleBestScore.textContent = appData.stats.block.bestScore;
   blockTotalClearsValue.textContent = appData.stats.block.totalLinesCleared;
-  quizBestMeta.textContent = `Best score: ${appData.stats.quiz.bestScore} / 5 • Plays: ${appData.stats.quiz.plays}`;
+  quizBestMeta.textContent = t("bestScoreMeta", {
+    score: appData.stats.quiz.bestScore,
+    plays: appData.stats.quiz.plays
+  });
   soundToggleButton.textContent = appData.settings.soundEnabled ? "🔊" : "🔇";
+  messageInput.placeholder = botIsBusy ? t("botTyping") : t("inputPlaceholder");
 }
 
 function recordGamePlay(gameKey) {
@@ -615,7 +605,7 @@ function recordGamePlay(gameKey) {
   appData.stats.gamesPlayed[gameKey] += 1;
   appData.stats[gameKey].plays += 1;
   saveAppData();
-  updateHeaderStats();
+  updatePersistentGameStats();
   unlockAchievement("first_play");
   maybeUnlockAllRounder();
 }
@@ -628,13 +618,8 @@ function unlockAchievement(id) {
 
   appData.achievements.push(id);
   saveAppData();
-  updateHeaderStats();
+  updatePersistentGameStats();
   playSound("achievement");
-
-  queueBotReplies([
-    `🏆 Achievement unlocked: ${achievement.title}`,
-    achievement.text
-  ]);
 }
 
 function maybeUnlockAllRounder() {
@@ -643,8 +628,6 @@ function maybeUnlockAllRounder() {
     unlockAchievement("all_rounder");
   }
 }
-
-/* ---------- Audio ---------- */
 
 function ensureAudioContext() {
   if (!audioContext) {
@@ -657,7 +640,6 @@ function ensureAudioContext() {
 
 function playTone(frequency, duration = 0.12, type = "sine", volume = 0.03, whenOffset = 0) {
   if (!appData.settings.soundEnabled) return;
-
   ensureAudioContext();
 
   const startTime = audioContext.currentTime + whenOffset;
@@ -708,12 +690,8 @@ function playSound(kind) {
       playTone(820, 0.1, "triangle", 0.03, 0.05);
       playTone(1040, 0.12, "triangle", 0.025, 0.11);
       break;
-    default:
-      break;
   }
 }
-
-/* ---------- Utilities ---------- */
 
 function getCurrentTime() {
   const now = new Date();
@@ -730,13 +708,13 @@ function updateInputState() {
   const shouldDisable = botIsBusy;
   messageInput.disabled = shouldDisable;
   sendButton.disabled = shouldDisable;
-  messageInput.placeholder = botIsBusy ? "Bot is typing..." : "Type your message...";
+  messageInput.placeholder = shouldDisable ? t("botTyping") : t("inputPlaceholder");
 }
 
 function normalizeText(text) {
   return text
     .toLowerCase()
-    .replace(/[^a-z0-9\s?]/g, "")
+    .replace(/[^a-zA-ZçğıöşüÇĞİÖŞÜ0-9\s?']/g, "")
     .replace(/\s+/g, " ")
     .trim();
 }
@@ -762,23 +740,15 @@ function pulseElement(element) {
   element.classList.add("pulse");
 }
 
-function capitalize(text) {
-  return text.charAt(0).toUpperCase() + text.slice(1);
-}
-
 function getSortingBoxSize() {
   const firstBox = sortingBoard.querySelector(".sorting-box");
-  if (!firstBox) {
-    return window.innerWidth <= 700 ? 52 : 60;
-  }
+  if (!firstBox) return window.innerWidth <= 700 ? 52 : 60;
   return Math.round(firstBox.getBoundingClientRect().width);
 }
 
 function getBlockBoardCellSize() {
   const firstCell = blockBoard.querySelector(".block-cell");
-  if (!firstCell) {
-    return window.innerWidth <= 700 ? 28 : 42;
-  }
+  if (!firstCell) return window.innerWidth <= 700 ? 28 : 42;
   return Math.round(firstCell.getBoundingClientRect().width);
 }
 
@@ -832,9 +802,7 @@ function addOptionMessage(text, options) {
   options.forEach((option) => {
     const button = document.createElement("button");
     button.classList.add("chat-option-button");
-    if (option.variant === "secondary") {
-      button.classList.add("secondary");
-    }
+    if (option.variant === "secondary") button.classList.add("secondary");
     button.type = "button";
     button.textContent = option.label;
     button.addEventListener("click", () => handleChatAction(option.action));
@@ -896,17 +864,13 @@ async function botOptionReply(text, options, sessionId) {
 
 function queueBotReply(text) {
   const sessionId = botSessionId;
-
-  botQueue = botQueue
-    .then(() => botReply(text, sessionId))
-    .finally(() => {
-      if (sessionId === botSessionId) {
-        botIsBusy = false;
-        updateInputState();
-        messageInput.focus();
-      }
-    });
-
+  botQueue = botQueue.then(() => botReply(text, sessionId)).finally(() => {
+    if (sessionId === botSessionId) {
+      botIsBusy = false;
+      updateInputState();
+      messageInput.focus();
+    }
+  });
   return botQueue;
 }
 
@@ -916,17 +880,13 @@ function queueBotReplies(messages) {
 
 function queueBotOptions(text, options) {
   const sessionId = botSessionId;
-
-  botQueue = botQueue
-    .then(() => botOptionReply(text, options, sessionId))
-    .finally(() => {
-      if (sessionId === botSessionId) {
-        botIsBusy = false;
-        updateInputState();
-        messageInput.focus();
-      }
-    });
-
+  botQueue = botQueue.then(() => botOptionReply(text, options, sessionId)).finally(() => {
+    if (sessionId === botSessionId) {
+      botIsBusy = false;
+      updateInputState();
+      messageInput.focus();
+    }
+  });
   return botQueue;
 }
 
@@ -942,41 +902,64 @@ function showOnlyScreen(screenName) {
   if (screenName === "blockPuzzle") blockPuzzleScreen.classList.remove("hidden");
 }
 
-/* ---------- Chat Menus ---------- */
+function showGameOptionsOnly() {
+  queueBotOptions(t("chooseGame"), [
+    { label: t("quiz"), action: "menu_quiz" },
+    { label: t("numberSorting"), action: "menu_sorting" },
+    { label: t("blockPuzzle"), action: "menu_block" },
+    { label: t("randomGame"), action: "menu_random", variant: "secondary" }
+  ]);
+}
 
 function showMainMenu(isFirstLoad = false) {
-  chatContext = "main";
   showOnlyScreen("chat");
 
-  if (isFirstLoad) {
-    queueBotReplies([
-      "Hello! Welcome to GameBot.",
-      "I can chat a little and I can also launch games for you.",
-      "You can tap a game below or type something like quiz, block puzzle, random game, easy game, or hard game."
+  if (!appData.settings.language) {
+    queueBotOptions(t("languageQuestion"), [
+      { label: TEXT.en.english, action: "lang_en" },
+      { label: TEXT.tr.turkish, action: "lang_tr" }
     ]);
-  } else {
-    queueBotReply("What would you like to play next?");
+    return;
   }
 
-  queueBotOptions("Choose a game:", [
-    { label: "Quiz", action: "menu_quiz" },
-    { label: "Number Sorting", action: "menu_sorting" },
-    { label: "Block Puzzle", action: "menu_block" },
-    { label: "Random Game", action: "menu_random", variant: "secondary" }
-  ]);
+  if (isFirstLoad) {
+    queueBotReplies([t("welcome1"), t("welcome2"), t("welcome3")]);
+    showGameOptionsOnly();
+  } else {
+    queueBotReply(t("wouldYouLike"));
+    showGameOptionsOnly();
+  }
 }
 
 function showQuizCategoryMenu() {
-  chatContext = "quizCategory";
-  queueBotOptions("Choose a quiz category:", [
-    { label: "Mixed", action: "quiz_mixed" },
-    { label: "Science", action: "quiz_science" },
-    { label: "Geography", action: "quiz_geography" },
-    { label: "Random Category", action: "quiz_random_category", variant: "secondary" }
+  queueBotOptions(t("chooseQuizCategory"), [
+    { label: t("mixed"), action: "quiz_mixed" },
+    { label: t("science"), action: "quiz_science" },
+    { label: t("geography"), action: "quiz_geography" },
+    { label: t("randomCategory"), action: "quiz_random_category", variant: "secondary" }
   ]);
 }
 
+function setLanguage(languageCode) {
+  appData.settings.language = languageCode;
+  saveAppData();
+  applyStaticTranslations();
+  clearBotQueue();
+  chatMessages.innerHTML = "";
+  showMainMenu(true);
+}
+
 function handleChatAction(action) {
+  if (action === "lang_en") {
+    setLanguage("en");
+    return;
+  }
+
+  if (action === "lang_tr") {
+    setLanguage("tr");
+    return;
+  }
+
   if (action === "menu_quiz") {
     clearBotQueue();
     showOnlyScreen("chat");
@@ -1015,9 +998,8 @@ function handleChatAction(action) {
   }
 
   if (action === "quiz_random_category") {
-    const randomCategory = ["mixed", "science", "geography"][
-      Math.floor(Math.random() * 3)
-    ];
+    const categories = ["mixed", "science", "geography"];
+    const randomCategory = categories[Math.floor(Math.random() * categories.length)];
     startQuizGame(randomCategory);
   }
 }
@@ -1027,7 +1009,8 @@ function launchRandomGame() {
   const randomGame = games[Math.floor(Math.random() * games.length)];
 
   if (randomGame === "quiz") {
-    startQuizGame(["mixed", "science", "geography"][Math.floor(Math.random() * 3)]);
+    const categories = ["mixed", "science", "geography"];
+    startQuizGame(categories[Math.floor(Math.random() * categories.length)]);
   } else if (randomGame === "sorting") {
     openSortingSetupScreen();
   } else {
@@ -1035,51 +1018,87 @@ function launchRandomGame() {
   }
 }
 
+function replyThenShowOptions(replyText) {
+  clearBotQueue();
+  queueBotReply(replyText);
+  showGameOptionsOnly();
+}
+
 function handleSmallTalk(text) {
   const normalized = normalizeText(text);
 
-  if (/^(hi|hello|hey|good morning|good afternoon|good evening)$/.test(normalized)) {
-    clearBotQueue();
-    queueBotReply("Hello! I'm doing well and I'm ready to play.");
-    showMainMenu();
+  const greetings = ["hi", "hello", "hey", "good morning", "good afternoon", "good evening", "merhaba", "selam", "günaydın", "iyi akşamlar"];
+  if (greetings.includes(normalized)) {
+    replyThenShowOptions(t("greetingReply"));
     return true;
   }
 
-  if (normalized.includes("how are you")) {
-    clearBotQueue();
-    queueBotReply("I'm doing great. Thanks for asking! I'm ready for a game whenever you are.");
-    showMainMenu();
+  const howAreYouPatterns = [
+    "how are you",
+    "how are you doing",
+    "hows it going",
+    "how is it going",
+    "nasılsın",
+    "naber",
+    "ne haber"
+  ];
+  if (howAreYouPatterns.includes(normalized)) {
+    replyThenShowOptions(t("howAreYouReply"));
     return true;
   }
 
-  if (normalized === "thanks" || normalized === "thank you" || normalized === "thx") {
-    clearBotQueue();
-    queueBotReply("You're welcome!");
-    showMainMenu();
+  const whoAreYouPatterns = [
+    "what is your name",
+    "whats your name",
+    "who are you",
+    "adın ne",
+    "kimsin"
+  ];
+  if (whoAreYouPatterns.includes(normalized)) {
+    replyThenShowOptions(t("whoAreYouReply"));
     return true;
   }
 
-  if (
-    normalized.includes("who are you") ||
-    normalized.includes("what are you") ||
-    normalized.includes("what can you do")
-  ) {
+  const helpPatterns = ["what can you do", "help", "help me", "ne yapabiliyorsun", "yardım", "yardım et"];
+  if (helpPatterns.includes(normalized)) {
     clearBotQueue();
-    queueBotReplies([
-      "I'm GameBot.",
-      "I can chat a little, guide you through the menu, and launch Quiz, Number Sorting, or Block Puzzle."
+    queueBotReplies([t("help1"), t("help2")]);
+    showGameOptionsOnly();
+    return true;
+  }
+
+  const thanksPatterns = ["thanks", "thank you", "thx", "teşekkürler", "teşekkür ederim", "sağ ol"];
+  if (thanksPatterns.includes(normalized)) {
+    replyThenShowOptions(t("thanksReply"));
+    return true;
+  }
+
+  const byePatterns = ["bye", "goodbye", "see you", "görüşürüz", "hoşça kal"];
+  if (byePatterns.includes(normalized)) {
+    replyThenShowOptions(t("byeReply"));
+    return true;
+  }
+
+  const yesPatterns = ["yes", "sure", "okay", "ok", "evet", "olur", "tamam"];
+  if (yesPatterns.includes(normalized)) {
+    clearBotQueue();
+    queueBotReply(t("yesReply"));
+    showGameOptionsOnly();
+    return true;
+  }
+
+  const noPatterns = ["no", "not now", "hayır", "şimdi değil"];
+  if (noPatterns.includes(normalized)) {
+    replyThenShowOptions(t("noReply"));
+    return true;
+  }
+
+  if (normalized === TEXT.en.changeLanguageCommand || normalized === TEXT.tr.changeLanguageCommand) {
+    clearBotQueue();
+    queueBotOptions(t("languageQuestion"), [
+      { label: TEXT.en.english, action: "lang_en" },
+      { label: TEXT.tr.turkish, action: "lang_tr" }
     ]);
-    showMainMenu();
-    return true;
-  }
-
-  if (normalized === "help" || normalized.includes("help me")) {
-    clearBotQueue();
-    queueBotReplies([
-      "Here are a few things you can say:",
-      "quiz, number sorting, block puzzle, random game, easy game, hard game"
-    ]);
-    showMainMenu();
     return true;
   }
 
@@ -1089,25 +1108,25 @@ function handleSmallTalk(text) {
 function handleBotSmartSelection(userText) {
   const text = normalizeText(userText);
 
-  if (text.includes("random")) {
+  if (text.includes("random") || text.includes("rastgele")) {
     launchRandomGame();
     return true;
   }
 
-  if (text.includes("easy")) {
+  if (text.includes("easy") || text.includes("kolay")) {
     clearBotQueue();
-    queueBotOptions("Here are easier choices:", [
-      { label: "Quiz - Mixed", action: "quiz_mixed" },
-      { label: "Number Sorting", action: "menu_sorting" }
+    queueBotOptions(t("easierChoices"), [
+      { label: t("quizMixed"), action: "quiz_mixed" },
+      { label: t("numberSorting"), action: "menu_sorting" }
     ]);
     return true;
   }
 
-  if (text.includes("hard")) {
+  if (text.includes("hard") || text.includes("zor")) {
     clearBotQueue();
-    queueBotOptions("Here are harder choices:", [
-      { label: "Block Puzzle", action: "menu_block" },
-      { label: "Quiz - Science", action: "quiz_science" }
+    queueBotOptions(t("harderChoices"), [
+      { label: t("blockPuzzle"), action: "menu_block" },
+      { label: t("quizScience"), action: "quiz_science" }
     ]);
     return true;
   }
@@ -1115,23 +1134,24 @@ function handleBotSmartSelection(userText) {
   return false;
 }
 
-/* ---------- Sorting Game ---------- */
+/* ---------- Sorting ---------- */
 
 function updateSortingSetupUI() {
   const buttons = rangeButtons.querySelectorAll(".range-button");
-
   buttons.forEach((button) => {
     const rangeValue = Number(button.dataset.range);
     button.classList.toggle("active", rangeValue === sortingSelectedRange);
   });
 
   if (sortingSelectedRange) {
-    selectedRangeText.textContent = `Selected range: 1 - ${sortingSelectedRange}`;
+    selectedRangeText.textContent = t("selectedRange", { range: sortingSelectedRange });
     startSortingWithRangeButton.disabled = false;
   } else {
-    selectedRangeText.textContent = "No range selected";
+    selectedRangeText.textContent = t("noRangeSelected");
     startSortingWithRangeButton.disabled = true;
   }
+
+  startSortingWithRangeButton.textContent = t("startChallenge");
 }
 
 function buildAvailableSortingNumbers(rangeMax) {
@@ -1139,20 +1159,15 @@ function buildAvailableSortingNumbers(rangeMax) {
 }
 
 function getRandomUniqueSortingNumber() {
-  if (sortingAvailableNumbers.length === 0) {
-    return null;
-  }
-
+  if (sortingAvailableNumbers.length === 0) return null;
   const randomIndex = Math.floor(Math.random() * sortingAvailableNumbers.length);
   const chosenNumber = sortingAvailableNumbers[randomIndex];
   sortingAvailableNumbers.splice(randomIndex, 1);
-
   return chosenNumber;
 }
 
 function createSortingBoard() {
   sortingBoard.innerHTML = "";
-
   for (let i = 0; i < 10; i++) {
     const box = document.createElement("div");
     box.classList.add("sorting-box", "empty");
@@ -1209,17 +1224,11 @@ function generateNextSortingNumber() {
 
 function isPlacementValid(index, value) {
   for (let i = 0; i < index; i++) {
-    if (sortingValues[i] !== null && value < sortingValues[i]) {
-      return false;
-    }
+    if (sortingValues[i] !== null && value < sortingValues[i]) return false;
   }
-
   for (let i = index + 1; i < sortingValues.length; i++) {
-    if (sortingValues[i] !== null && value > sortingValues[i]) {
-      return false;
-    }
+    if (sortingValues[i] !== null && value > sortingValues[i]) return false;
   }
-
   return true;
 }
 
@@ -1243,10 +1252,11 @@ function placeSortingNumber(index) {
     markSortingBox(index, "lose");
     playSound("wrong");
 
+    clearBotQueue();
     queueBotReplies([
-      `Game over. ${value} breaks the ascending order.`,
-      "That number does not fit correctly in the full sequence.",
-      "Press Restart to try again or X to return to the chat."
+      t("sortLose1", { value }),
+      t("sortLose2"),
+      t("restartOrClose")
     ]);
     return;
   }
@@ -1254,7 +1264,6 @@ function placeSortingNumber(index) {
   playSound("place");
 
   const filledCount = sortingValues.filter((item) => item !== null).length;
-
   if (filledCount === 10) {
     sortingGameOver = true;
     sortingCurrentNumber = null;
@@ -1265,20 +1274,14 @@ function placeSortingNumber(index) {
     appData.stats.sorting.wins += 1;
     appData.stats.sorting.bestRangeWon = Math.max(appData.stats.sorting.bestRangeWon, sortingSelectedRange);
     saveAppData();
-    updateHeaderStats();
+    updatePersistentGameStats();
     unlockAchievement("sorting_first_win");
 
-    if (sortingSelectedRange === 100) {
-      unlockAchievement("sorting_range_100");
-    }
-
+    if (sortingSelectedRange === 100) unlockAchievement("sorting_range_100");
     playSound("win");
 
-    queueBotReplies([
-      "Amazing! You placed all 10 numbers correctly.",
-      "You win the number sorting game.",
-      "Press Restart to play again or X to return to the chat."
-    ]);
+    clearBotQueue();
+    queueBotReplies([t("sortWin1"), t("sortWin2"), t("restartOrClose")]);
     return;
   }
 
@@ -1287,7 +1290,6 @@ function placeSortingNumber(index) {
 
 function createSortingGhost(value) {
   const size = getSortingBoxSize();
-
   const ghost = document.createElement("div");
   ghost.classList.add("drag-ghost");
   ghost.style.width = `${size}px`;
@@ -1302,13 +1304,11 @@ function createSortingGhost(value) {
   ghost.style.fontSize = `${Math.max(18, Math.round(size * 0.34))}px`;
   ghost.style.boxShadow = "0 16px 28px rgba(239, 68, 68, 0.25)";
   ghost.textContent = value;
-
   return ghost;
 }
 
 function startSortingDrag(clientX, clientY) {
   if (sortingGameOver || sortingCurrentNumber === null) return;
-
   sortingDragState.active = true;
   sortingDragState.targetIndex = null;
 
@@ -1326,15 +1326,11 @@ function updateSortingDrag(clientX, clientY) {
   sortingDragState.ghost.style.left = `${clientX}px`;
   sortingDragState.ghost.style.top = `${clientY}px`;
 
-  [...sortingBoard.children].forEach((box) => {
-    box.classList.remove("drag-valid", "drag-invalid");
-  });
+  [...sortingBoard.children].forEach((box) => box.classList.remove("drag-valid", "drag-invalid"));
 
   const element = document.elementFromPoint(clientX, clientY);
   const targetBox = element ? element.closest(".sorting-box") : null;
-
   sortingDragState.targetIndex = null;
-
   if (!targetBox) return;
 
   const index = Number(targetBox.dataset.index);
@@ -1352,13 +1348,8 @@ function updateSortingDrag(clientX, clientY) {
 function endSortingDrag() {
   if (!sortingDragState.active) return;
 
-  if (sortingDragState.ghost) {
-    sortingDragState.ghost.remove();
-  }
-
-  [...sortingBoard.children].forEach((box) => {
-    box.classList.remove("drag-valid", "drag-invalid");
-  });
+  if (sortingDragState.ghost) sortingDragState.ghost.remove();
+  [...sortingBoard.children].forEach((box) => box.classList.remove("drag-valid", "drag-invalid"));
 
   if (
     sortingDragState.targetIndex !== null &&
@@ -1368,16 +1359,11 @@ function endSortingDrag() {
     placeSortingNumber(sortingDragState.targetIndex);
   }
 
-  sortingDragState = {
-    active: false,
-    ghost: null,
-    targetIndex: null
-  };
+  sortingDragState = { active: false, ghost: null, targetIndex: null };
 }
 
 function openSortingSetupScreen() {
   clearBotQueue();
-
   mode = "sorting";
   sortingSelectedRange = null;
   sortingGameOver = false;
@@ -1387,7 +1373,7 @@ function openSortingSetupScreen() {
 
   sortingSetupCard.classList.remove("hidden");
   sortingGameLayout.classList.add("hidden");
-  currentRangeBadge.textContent = "Range: -";
+  currentRangeBadge.textContent = t("rangeBadgeEmpty");
 
   updateSortingSetupUI();
   showOnlyScreen("sorting");
@@ -1395,7 +1381,6 @@ function openSortingSetupScreen() {
 
 function startNumberSortingGame() {
   if (!sortingSelectedRange) return;
-
   recordGamePlay("sorting");
 
   sortingValues = Array(10).fill(null);
@@ -1408,19 +1393,17 @@ function startNumberSortingGame() {
 
   sortingSetupCard.classList.add("hidden");
   sortingGameLayout.classList.remove("hidden");
-  currentRangeBadge.textContent = `Range: 1 - ${sortingSelectedRange}`;
+  currentRangeBadge.textContent = t("rangeBadge", { range: `1 - ${sortingSelectedRange}` });
 
   generateNextSortingNumber();
 }
 
 function restartSortingGame() {
   clearBotQueue();
-
   if (!sortingSelectedRange) {
     openSortingSetupScreen();
     return;
   }
-
   startNumberSortingGame();
 }
 
@@ -1430,55 +1413,55 @@ function closeSortingGame() {
   showMainMenu();
 }
 
-/* ---------- Quiz Game ---------- */
+/* ---------- Quiz ---------- */
 
 function getRankingMessage(score, total) {
-  if (score === total) return "Outstanding performance. You are in the top 10% of players.";
-  if (score === total - 1) return "Excellent result. You are in the top 20% of players.";
-  if (score === 3) return "Great effort. You are in the top 35% of players.";
-  if (score === 2) return "Nice try. You are in the top 50% of players.";
-  return "Good start. Keep practicing and come back stronger for the next test.";
+  if (score === total) return t("rankPerfect");
+  if (score === total - 1) return t("rankExcellent");
+  if (score === 3) return t("rankGreat");
+  if (score === 2) return t("rankNice");
+  return t("rankStart");
 }
 
 function getRandomQuizSet(category) {
   const matchingSets = quizTestBank.filter((set) => set.category === category);
   const randomSet = matchingSets[Math.floor(Math.random() * matchingSets.length)];
+
   return {
     ...randomSet,
     questions: randomSet.questions.map((item) => ({
-      question: item.question,
-      options: { ...item.options },
+      question: lang() === "tr" ? item.question_tr : item.question,
+      options: lang() === "tr" ? item.options_tr : item.options,
       correctAnswer: item.correctAnswer
-    }))
+    })),
+    titleLocalized: lang() === "tr" ? randomSet.title_tr : randomSet.title
   };
 }
 
 function startQuizGame(category = "mixed") {
   clearBotQueue();
-
   const selectedSet = getRandomQuizSet(category);
 
   mode = "quiz";
-  chatContext = "main";
   currentQuestionIndex = 0;
   quizScore = 0;
   quizAnswers = [];
   quizLocked = false;
   activeQuizCategory = category;
-  activeQuizTitle = selectedSet.title;
+  activeQuizTitle = selectedSet.titleLocalized;
   activeQuizQuestions = selectedSet.questions;
 
   recordGamePlay("quiz");
   appData.stats.quiz.byCategory[category] += 1;
   saveAppData();
-  updateHeaderStats();
+  updatePersistentGameStats();
 
   quizMainCard.classList.remove("hidden");
   quizResults.classList.add("hidden");
   quizFeedback.textContent = "";
   quizFeedback.className = "quiz-feedback";
 
-  quizCategoryBadge.textContent = capitalize(category);
+  quizCategoryBadge.textContent = localizeCategory(category);
   quizSetTitle.textContent = activeQuizTitle;
 
   showOnlyScreen("quiz");
@@ -1488,7 +1471,10 @@ function startQuizGame(category = "mixed") {
 function renderQuizQuestion() {
   const currentQuestion = activeQuizQuestions[currentQuestionIndex];
 
-  quizProgress.textContent = `Question ${currentQuestionIndex + 1} of ${activeQuizQuestions.length}`;
+  quizProgress.textContent = t("questionXofY", {
+    current: currentQuestionIndex + 1,
+    total: activeQuizQuestions.length
+  });
   quizQuestion.textContent = currentQuestion.question;
   quizOptions.innerHTML = "";
   quizFeedback.textContent = "";
@@ -1500,7 +1486,6 @@ function renderQuizQuestion() {
     button.classList.add("quiz-option");
     button.type = "button";
     button.innerHTML = `<span class="quiz-option-letter">${letter}</span><span>${text}</span>`;
-
     button.addEventListener("click", () => handleQuizOptionClick(letter, button));
     quizOptions.appendChild(button);
   });
@@ -1514,31 +1499,25 @@ async function handleQuizOptionClick(selectedLetter, selectedButton) {
   const correctLetter = currentQuestion.correctAnswer;
   const optionButtons = [...quizOptions.children];
 
-  optionButtons.forEach((button) => {
-    button.disabled = true;
-  });
-
+  optionButtons.forEach((button) => { button.disabled = true; });
   selectedButton.classList.add("selected");
 
   if (selectedLetter === correctLetter) {
     quizScore++;
     selectedButton.classList.add("correct");
-    quizFeedback.textContent = "Correct answer!";
+    quizFeedback.textContent = t("correctAnswer");
     quizFeedback.classList.add("correct-text");
     playSound("correct");
   } else {
     selectedButton.classList.add("wrong");
 
     const correctButton = optionButtons.find(
-      (button) =>
-        button.querySelector(".quiz-option-letter").textContent === correctLetter
+      (button) => button.querySelector(".quiz-option-letter").textContent === correctLetter
     );
 
-    if (correctButton) {
-      correctButton.classList.add("correct");
-    }
+    if (correctButton) correctButton.classList.add("correct");
 
-    quizFeedback.textContent = `Wrong answer. The correct answer was ${correctLetter}.`;
+    quizFeedback.textContent = t("wrongAnswer", { answer: correctLetter });
     quizFeedback.classList.add("wrong-text");
     playSound("wrong");
   }
@@ -1551,11 +1530,9 @@ async function handleQuizOptionClick(selectedLetter, selectedButton) {
   });
 
   await wait(1050);
-
   if (mode !== "quiz") return;
 
   currentQuestionIndex++;
-
   if (currentQuestionIndex < activeQuizQuestions.length) {
     renderQuizQuestion();
   } else {
@@ -1574,16 +1551,20 @@ function showQuizResults() {
   }
   unlockAchievement("quiz_first");
   saveAppData();
-  updateHeaderStats();
+  updatePersistentGameStats();
 
-  quizFinalTitle.textContent = "Quiz Completed";
-  quizFinalScore.textContent = `${quizScore} / ${activeQuizQuestions.length}`;
+  quizFinalTitle.textContent = t("quizCompleted");
+  quizFinalScore.textContent = t("quizYourScore", {
+    score: quizScore,
+    total: activeQuizQuestions.length
+  });
   quizRankingText.textContent = getRankingMessage(quizScore, activeQuizQuestions.length);
-  quizBestMeta.textContent = `Best score: ${appData.stats.quiz.bestScore} / 5 • Plays: ${appData.stats.quiz.plays}`;
+  quizBestMeta.textContent = t("bestScoreMeta", {
+    score: appData.stats.quiz.bestScore,
+    plays: appData.stats.quiz.plays
+  });
 
-  if (quizScore >= 4) {
-    playSound("win");
-  }
+  if (quizScore >= 4) playSound("win");
 
   quizReviewList.innerHTML = "";
 
@@ -1603,15 +1584,10 @@ function showQuizResults() {
       option.classList.add("review-option");
       option.innerHTML = `<strong>${letter})</strong> ${text}`;
 
-      if (letter === item.correctAnswer) {
-        option.classList.add("correct");
-      }
-
+      if (letter === item.correctAnswer) option.classList.add("correct");
       if (letter === item.selectedAnswer) {
         option.classList.add("user-selected");
-        if (item.selectedAnswer !== item.correctAnswer) {
-          option.classList.add("wrong");
-        }
+        if (item.selectedAnswer !== item.correctAnswer) option.classList.add("wrong");
       }
 
       reviewOptions.appendChild(option);
@@ -1621,8 +1597,8 @@ function showQuizResults() {
     badge.classList.add("review-badge");
     badge.textContent =
       item.selectedAnswer === item.correctAnswer
-        ? `Your answer: ${item.selectedAnswer} • Correct`
-        : `Your answer: ${item.selectedAnswer} • Correct answer: ${item.correctAnswer}`;
+        ? t("yourAnswerCorrect", { answer: item.selectedAnswer })
+        : t("yourAnswerWrong", { answer: item.selectedAnswer, correct: item.correctAnswer });
 
     reviewCard.appendChild(reviewOptions);
     reviewCard.appendChild(badge);
@@ -1641,12 +1617,10 @@ function closeQuizGame() {
   showMainMenu();
 }
 
-/* ---------- Block Puzzle ---------- */
+/* ---------- Block ---------- */
 
 function createEmptyBlockBoard() {
-  return Array.from({ length: BLOCK_BOARD_SIZE }, () =>
-    Array(BLOCK_BOARD_SIZE).fill(0)
-  );
+  return Array.from({ length: BLOCK_BOARD_SIZE }, () => Array(BLOCK_BOARD_SIZE).fill(0));
 }
 
 function updateBlockPuzzleScore() {
@@ -1660,7 +1634,6 @@ function updateBlockPuzzleStatus(text) {
 
 function createBlockBoardUI() {
   blockBoard.innerHTML = "";
-
   for (let row = 0; row < BLOCK_BOARD_SIZE; row++) {
     for (let col = 0; col < BLOCK_BOARD_SIZE; col++) {
       const cell = document.createElement("div");
@@ -1674,16 +1647,11 @@ function createBlockBoardUI() {
 
 function renderBlockBoard() {
   const cells = [...blockBoard.children];
-
   cells.forEach((cell) => {
     const row = Number(cell.dataset.row);
     const col = Number(cell.dataset.col);
-
     cell.classList.remove("filled", "preview-valid", "preview-invalid");
-
-    if (blockBoardState[row][col] === 1) {
-      cell.classList.add("filled");
-    }
+    if (blockBoardState[row][col] === 1) cell.classList.add("filled");
   });
 }
 
@@ -1701,29 +1669,20 @@ function canPlaceBlock(shape, startRow, startCol) {
       const boardCol = startCol + col;
 
       if (
-        boardRow < 0 ||
-        boardRow >= BLOCK_BOARD_SIZE ||
-        boardCol < 0 ||
-        boardCol >= BLOCK_BOARD_SIZE
-      ) {
-        return false;
-      }
+        boardRow < 0 || boardRow >= BLOCK_BOARD_SIZE ||
+        boardCol < 0 || boardCol >= BLOCK_BOARD_SIZE
+      ) return false;
 
-      if (blockBoardState[boardRow][boardCol] === 1) {
-        return false;
-      }
+      if (blockBoardState[boardRow][boardCol] === 1) return false;
     }
   }
-
   return true;
 }
 
 function canShapeFitAnywhere(shape) {
   for (let row = 0; row < BLOCK_BOARD_SIZE; row++) {
     for (let col = 0; col < BLOCK_BOARD_SIZE; col++) {
-      if (canPlaceBlock(shape, row, col)) {
-        return true;
-      }
+      if (canPlaceBlock(shape, row, col)) return true;
     }
   }
   return false;
@@ -1731,29 +1690,19 @@ function canShapeFitAnywhere(shape) {
 
 function getRandomPlayableBlockShape() {
   const shuffledShapes = [...blockShapes].sort(() => Math.random() - 0.5);
-
   for (const shape of shuffledShapes) {
-    if (canShapeFitAnywhere(shape)) {
-      return shape.map((row) => [...row]);
-    }
+    if (canShapeFitAnywhere(shape)) return shape.map((row) => [...row]);
   }
-
   return null;
 }
 
 function generatePlayableBlockPieces() {
   const guaranteedShape = getRandomPlayableBlockShape();
-  if (!guaranteedShape) {
-    return [];
-  }
+  if (!guaranteedShape) return [];
 
   const pieces = [{ shape: guaranteedShape, used: false }];
-
   for (let i = 0; i < 2; i++) {
-    pieces.push({
-      shape: getRandomBlockShape(),
-      used: false
-    });
+    pieces.push({ shape: getRandomBlockShape(), used: false });
   }
 
   return pieces.sort(() => Math.random() - 0.5);
@@ -1784,13 +1733,8 @@ function renderSingleBlockPiece(shape, isGhost = false, cellSize = null) {
       cell.style.height = `${size}px`;
       cell.style.borderRadius = `${Math.max(4, Math.round(size * 0.28))}px`;
 
-      if (cellValue === 1) {
-        cell.classList.add("active");
-      }
-
-      if (isGhost) {
-        cell.style.opacity = cellValue === 1 ? "0.96" : "0.45";
-      }
+      if (cellValue === 1) cell.classList.add("active");
+      if (isGhost) cell.style.opacity = cellValue === 1 ? "0.96" : "0.45";
 
       wrapper.appendChild(cell);
     });
@@ -1810,9 +1754,7 @@ function renderBlockPieces() {
     if (piece.used) {
       card.classList.add("used");
     } else {
-      card.addEventListener("pointerdown", (event) => {
-        startBlockDrag(index, event, card);
-      });
+      card.addEventListener("pointerdown", (event) => startBlockDrag(index, event, card));
     }
 
     card.appendChild(renderSingleBlockPiece(piece.shape));
@@ -1822,7 +1764,6 @@ function renderBlockPieces() {
 
 function previewBlockPlacement(startRow, startCol, shape) {
   clearBlockPreview();
-
   const isValid = canPlaceBlock(shape, startRow, startCol);
 
   for (let row = 0; row < shape.length; row++) {
@@ -1833,10 +1774,8 @@ function previewBlockPlacement(startRow, startCol, shape) {
       const boardCol = startCol + col;
 
       if (
-        boardRow < 0 ||
-        boardRow >= BLOCK_BOARD_SIZE ||
-        boardCol < 0 ||
-        boardCol >= BLOCK_BOARD_SIZE
+        boardRow < 0 || boardRow >= BLOCK_BOARD_SIZE ||
+        boardCol < 0 || boardCol >= BLOCK_BOARD_SIZE
       ) {
         continue;
       }
@@ -1855,9 +1794,7 @@ function previewBlockPlacement(startRow, startCol, shape) {
 }
 
 function clearBlockPreview() {
-  [...blockBoard.children].forEach((cell) => {
-    cell.classList.remove("preview-valid", "preview-invalid");
-  });
+  [...blockBoard.children].forEach((cell) => cell.classList.remove("preview-valid", "preview-invalid"));
 }
 
 function placeBlock(shape, startRow, startCol) {
@@ -1875,36 +1812,26 @@ function clearCompletedLines() {
   const fullCols = [];
 
   for (let row = 0; row < BLOCK_BOARD_SIZE; row++) {
-    if (blockBoardState[row].every((cell) => cell === 1)) {
-      fullRows.push(row);
-    }
+    if (blockBoardState[row].every((cell) => cell === 1)) fullRows.push(row);
   }
 
   for (let col = 0; col < BLOCK_BOARD_SIZE; col++) {
     let isFull = true;
-
     for (let row = 0; row < BLOCK_BOARD_SIZE; row++) {
       if (blockBoardState[row][col] !== 1) {
         isFull = false;
         break;
       }
     }
-
-    if (isFull) {
-      fullCols.push(col);
-    }
+    if (isFull) fullCols.push(col);
   }
 
   fullRows.forEach((row) => {
-    for (let col = 0; col < BLOCK_BOARD_SIZE; col++) {
-      blockBoardState[row][col] = 0;
-    }
+    for (let col = 0; col < BLOCK_BOARD_SIZE; col++) blockBoardState[row][col] = 0;
   });
 
   fullCols.forEach((col) => {
-    for (let row = 0; row < BLOCK_BOARD_SIZE; row++) {
-      blockBoardState[row][col] = 0;
-    }
+    for (let row = 0; row < BLOCK_BOARD_SIZE; row++) blockBoardState[row][col] = 0;
   });
 
   return fullRows.length + fullCols.length;
@@ -1916,17 +1843,12 @@ function areAllBlockPiecesUsed() {
 
 function hasAnyValidMoveForCurrentPieces() {
   const remainingPieces = blockCurrentPieces.filter((piece) => !piece.used);
-
-  if (remainingPieces.length === 0) {
-    return true;
-  }
+  if (remainingPieces.length === 0) return true;
 
   for (const piece of remainingPieces) {
     for (let row = 0; row < BLOCK_BOARD_SIZE; row++) {
       for (let col = 0; col < BLOCK_BOARD_SIZE; col++) {
-        if (canPlaceBlock(piece.shape, row, col)) {
-          return true;
-        }
+        if (canPlaceBlock(piece.shape, row, col)) return true;
       }
     }
   }
@@ -1946,21 +1868,20 @@ function finishBlockPuzzleGame() {
 
   appData.stats.block.bestScore = Math.max(appData.stats.block.bestScore, blockScore);
   saveAppData();
-  updateHeaderStats();
+  updatePersistentGameStats();
   playSound("wrong");
 
+  clearBotQueue();
   queueBotReplies([
-    `Game over. Your block puzzle score is ${blockScore}.`,
-    "There are no more valid moves left for the remaining blocks.",
-    "Press Restart to play again or X to return to the chat."
+    t("blockGameOver1", { score: blockScore }),
+    t("blockGameOver2"),
+    t("restartOrClose")
   ]);
 }
 
 function tryPlaceDraggedBlock(pieceIndex, row, col) {
   const piece = blockCurrentPieces[pieceIndex];
-  if (!piece || piece.used || !canPlaceBlock(piece.shape, row, col)) {
-    return false;
-  }
+  if (!piece || piece.used || !canPlaceBlock(piece.shape, row, col)) return false;
 
   placeBlock(piece.shape, row, col);
   piece.used = true;
@@ -1973,21 +1894,24 @@ function tryPlaceDraggedBlock(pieceIndex, row, col) {
   });
 
   blockScore += placedCellCount;
-
   const clearedLines = clearCompletedLines();
+
   if (clearedLines > 0) {
     blockScore += clearedLines * 10;
     appData.stats.block.totalLinesCleared += clearedLines;
-    updateBlockPuzzleStatus(`Great move! Cleared ${clearedLines} line${clearedLines > 1 ? "s" : ""}.`);
+    updateBlockPuzzleStatus(t("blockCleared", {
+      count: clearedLines,
+      suffix: clearedLines > 1 ? "s" : ""
+    }));
     playSound("line");
   } else {
-    updateBlockPuzzleStatus("Block placed successfully.");
+    updateBlockPuzzleStatus(t("blockPlaced"));
     playSound("place");
   }
 
   appData.stats.block.bestScore = Math.max(appData.stats.block.bestScore, blockScore);
   saveAppData();
-  updateHeaderStats();
+  updatePersistentGameStats();
 
   renderBlockBoard();
   renderBlockPieces();
@@ -1999,7 +1923,6 @@ function tryPlaceDraggedBlock(pieceIndex, row, col) {
 
   if (areAllBlockPiecesUsed()) {
     const nextPieces = generatePlayableBlockPieces();
-
     if (nextPieces.length === 0) {
       finishBlockPuzzleGame();
       return true;
@@ -2007,7 +1930,7 @@ function tryPlaceDraggedBlock(pieceIndex, row, col) {
 
     blockCurrentPieces = nextPieces;
     renderBlockPieces();
-    updateBlockPuzzleStatus("New playable blocks generated.");
+    updateBlockPuzzleStatus(t("blockNewPieces"));
     return true;
   }
 
@@ -2050,6 +1973,26 @@ function startBlockDrag(pieceIndex, event, sourceCard) {
   playSound("drag");
 }
 
+function getCenteredBlockStartPosition(clientX, clientY, shape) {
+  const rect = blockBoard.getBoundingClientRect();
+
+  if (
+    clientX < rect.left || clientX > rect.right ||
+    clientY < rect.top || clientY > rect.bottom
+  ) return null;
+
+  const localX = clientX - rect.left;
+  const localY = clientY - rect.top;
+
+  const cellSpanX = rect.width / BLOCK_BOARD_SIZE;
+  const cellSpanY = rect.height / BLOCK_BOARD_SIZE;
+
+  const startCol = Math.round(localX / cellSpanX - shape[0].length / 2);
+  const startRow = Math.round(localY / cellSpanY - shape.length / 2);
+
+  return { row: startRow, col: startCol };
+}
+
 function updateBlockDrag(clientX, clientY) {
   if (!blockDragState.active || !blockDragState.ghost) return;
 
@@ -2059,34 +2002,23 @@ function updateBlockDrag(clientX, clientY) {
   const piece = blockCurrentPieces[blockDragState.pieceIndex];
   if (!piece) return;
 
-  const element = document.elementFromPoint(clientX, clientY);
-  const cell = element ? element.closest(".block-cell") : null;
-
   clearBlockPreview();
   blockDragState.hoverRow = null;
   blockDragState.hoverCol = null;
 
-  if (!cell) return;
+  const placement = getCenteredBlockStartPosition(clientX, clientY, piece.shape);
+  if (!placement) return;
 
-  const row = Number(cell.dataset.row);
-  const col = Number(cell.dataset.col);
+  blockDragState.hoverRow = placement.row;
+  blockDragState.hoverCol = placement.col;
 
-  blockDragState.hoverRow = row;
-  blockDragState.hoverCol = col;
-
-  previewBlockPlacement(row, col, piece.shape);
+  previewBlockPlacement(placement.row, placement.col, piece.shape);
 }
 
 function endBlockDrag(forceCleanupOnly = false) {
   if (!blockDragState.active && !forceCleanupOnly) return;
 
-  const {
-    pieceIndex,
-    hoverRow,
-    hoverCol,
-    sourceCard,
-    ghost
-  } = blockDragState;
+  const { pieceIndex, hoverRow, hoverCol, sourceCard, ghost } = blockDragState;
 
   if (ghost) ghost.remove();
   if (sourceCard) sourceCard.classList.remove("dragging");
@@ -2129,7 +2061,7 @@ function startBlockPuzzleGame() {
   renderBlockBoard();
   generateBlockPieces();
   updateBlockPuzzleScore();
-  updateBlockPuzzleStatus("Drag a block onto the board to begin.");
+  updateBlockPuzzleStatus(t("blockStartStatus"));
 }
 
 function restartBlockPuzzleGame() {
@@ -2143,46 +2075,36 @@ function closeBlockPuzzleGame() {
   showMainMenu();
 }
 
-/* ---------- Input Handling ---------- */
+/* ---------- Input ---------- */
 
 function handleMenuSelection(userMessage) {
   const selectedGame = normalizeText(userMessage);
 
-  if (handleSmallTalk(selectedGame)) {
-    return;
-  }
+  if (handleSmallTalk(selectedGame)) return;
+  if (handleBotSmartSelection(selectedGame)) return;
 
-  if (handleBotSmartSelection(selectedGame)) {
-    return;
-  }
+  const quizTerms = ["quiz", "quiz game"];
+  const sortingTerms = ["number sorting", "sorting game", "number sort", "sorting", "sayı sıralama"];
+  const blockTerms = ["block puzzle", "block", "block blast", "puzzle", "blok bulmaca"];
+  const mixedTerms = ["mixed", "karışık"];
+  const scienceTerms = ["science", "bilim"];
+  const geographyTerms = ["geography", "coğrafya"];
 
-  if (selectedGame === "quiz" || selectedGame === "quiz game") {
+  if (quizTerms.includes(selectedGame)) {
     clearBotQueue();
     showQuizCategoryMenu();
-  } else if (
-    selectedGame === "number sorting" ||
-    selectedGame === "sorting game" ||
-    selectedGame === "number sort" ||
-    selectedGame === "sorting"
-  ) {
+  } else if (sortingTerms.includes(selectedGame)) {
     openSortingSetupScreen();
-  } else if (
-    selectedGame === "block puzzle" ||
-    selectedGame === "block" ||
-    selectedGame === "block blast" ||
-    selectedGame === "puzzle"
-  ) {
+  } else if (blockTerms.includes(selectedGame)) {
     startBlockPuzzleGame();
-  } else if (
-    selectedGame === "mixed" ||
-    selectedGame === "science" ||
-    selectedGame === "geography"
-  ) {
-    startQuizGame(selectedGame);
+  } else if (mixedTerms.includes(selectedGame)) {
+    startQuizGame("mixed");
+  } else if (scienceTerms.includes(selectedGame)) {
+    startQuizGame("science");
+  } else if (geographyTerms.includes(selectedGame)) {
+    startQuizGame("geography");
   } else {
-    clearBotQueue();
-    queueBotReply("I did not fully understand that. Which game would you like to play?");
-    showMainMenu();
+    replyThenShowOptions(t("notFitReply"));
   }
 }
 
@@ -2200,26 +2122,14 @@ function handleUserInput() {
   }
 }
 
-/* ---------- Global Pointer Drag ---------- */
-
 function handleGlobalPointerMove(event) {
-  if (sortingDragState.active) {
-    updateSortingDrag(event.clientX, event.clientY);
-  }
-
-  if (blockDragState.active) {
-    updateBlockDrag(event.clientX, event.clientY);
-  }
+  if (sortingDragState.active) updateSortingDrag(event.clientX, event.clientY);
+  if (blockDragState.active) updateBlockDrag(event.clientX, event.clientY);
 }
 
 function handleGlobalPointerUp() {
-  if (sortingDragState.active) {
-    endSortingDrag();
-  }
-
-  if (blockDragState.active) {
-    endBlockDrag();
-  }
+  if (sortingDragState.active) endSortingDrag();
+  if (blockDragState.active) endBlockDrag();
 }
 
 /* ---------- Events ---------- */
@@ -2246,18 +2156,14 @@ restartBlockPuzzleButton.addEventListener("click", restartBlockPuzzleGame);
 sendButton.addEventListener("click", handleUserInput);
 
 messageInput.addEventListener("keydown", (event) => {
-  if (event.key === "Enter") {
-    handleUserInput();
-  }
+  if (event.key === "Enter") handleUserInput();
 });
 
 soundToggleButton.addEventListener("click", () => {
   appData.settings.soundEnabled = !appData.settings.soundEnabled;
   saveAppData();
-  updateHeaderStats();
-  if (appData.settings.soundEnabled) {
-    playSound("correct");
-  }
+  updatePersistentGameStats();
+  if (appData.settings.soundEnabled) playSound("correct");
 });
 
 currentNumberCard.addEventListener("pointerdown", (event) => {
@@ -2273,7 +2179,7 @@ document.addEventListener("pointercancel", handleGlobalPointerUp);
 /* ---------- Init ---------- */
 
 loadAppData();
-updateHeaderStats();
+applyStaticTranslations();
 updateInputState();
 showOnlyScreen("chat");
 showMainMenu(true);

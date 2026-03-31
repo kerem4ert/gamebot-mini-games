@@ -15,22 +15,7 @@
     <div class="chat-container" id="chatContainer">
       <div class="chat-header">
         <h1>GameBot</h1>
-        <p>Choose a game and start playing</p>
-      </div>
-
-      <div class="chat-stats-strip">
-        <div class="chat-stat-pill">
-          <span class="chat-stat-label">Total Plays</span>
-          <span class="chat-stat-value" id="totalPlaysValue">0</span>
-        </div>
-        <div class="chat-stat-pill">
-          <span class="chat-stat-label">Achievements</span>
-          <span class="chat-stat-value" id="achievementCountValue">0</span>
-        </div>
-        <div class="chat-stat-pill">
-          <span class="chat-stat-label">Best Block</span>
-          <span class="chat-stat-value" id="bestBlockValue">0</span>
-        </div>
+        <p id="chatHeaderSubtitle">Chat a little, then jump into a game</p>
       </div>
 
       <div class="chat-messages" id="chatMessages"></div>
@@ -49,8 +34,8 @@
     <div class="game-screen hidden" id="sortingScreen">
       <div class="game-topbar">
         <div>
-          <h2>Number Sorting Challenge</h2>
-          <p>Drag the current number into an empty box and keep the full sequence in ascending order from left to right.</p>
+          <h2 id="sortingTitle">Number Sorting Challenge</h2>
+          <p id="sortingDescription">Drag the current number into an empty box and keep the full sequence in ascending order from left to right.</p>
         </div>
         <div class="topbar-actions">
           <button class="secondary-button" id="restartSortingGameButton">Restart</button>
@@ -60,8 +45,8 @@
 
       <div class="sorting-setup-wrap" id="sortingSetupWrap">
         <div class="sorting-setup-card" id="sortingSetupCard">
-          <h3>Select Difficulty Range</h3>
-          <p>Choose a range to begin the challenge.</p>
+          <h3 id="sortingSetupTitle">Select Difficulty Range</h3>
+          <p id="sortingSetupDescription">Choose a range to begin the challenge.</p>
           <div class="range-buttons" id="rangeButtons">
             <button class="range-button" data-range="25">1 - 25</button>
             <button class="range-button" data-range="50">1 - 50</button>
@@ -77,18 +62,18 @@
       <div class="sorting-game-layout hidden" id="sortingGameLayout">
         <div class="sorting-side-column">
           <div class="sorting-side-panel">
-            <div class="panel-label">Drag This Number</div>
+            <div class="panel-label" id="sortingPanelLabel">Drag This Number</div>
             <div class="current-number-card" id="currentNumberCard">-</div>
             <div class="range-badge" id="currentRangeBadge">Range: -</div>
           </div>
 
           <div class="game-mini-stats">
             <div class="mini-stat-card">
-              <span class="mini-stat-label">Wins</span>
+              <span class="mini-stat-label" id="sortingWinsLabel">Wins</span>
               <span class="mini-stat-value" id="sortingWinsValue">0</span>
             </div>
             <div class="mini-stat-card">
-              <span class="mini-stat-label">Best Range</span>
+              <span class="mini-stat-label" id="sortingBestRangeLabel">Best Range</span>
               <span class="mini-stat-value" id="sortingBestRangeValue">-</span>
             </div>
           </div>
@@ -103,8 +88,8 @@
     <div class="game-screen hidden" id="quizScreen">
       <div class="game-topbar">
         <div>
-          <h2>General Knowledge Quiz</h2>
-          <p>Choose a category, then play one random prepared 5-question test.</p>
+          <h2 id="quizTitle">General Knowledge Quiz</h2>
+          <p id="quizDescription">Choose a category, then play one random prepared 5-question test.</p>
         </div>
         <div class="topbar-actions">
           <button class="secondary-button" id="restartQuizButton">Restart</button>
@@ -140,8 +125,8 @@
     <div class="game-screen hidden" id="blockPuzzleScreen">
       <div class="game-topbar">
         <div>
-          <h2>Block Puzzle</h2>
-          <p>Drag a block from below and drop it onto the 8x8 board. Fill full rows or columns to clear them.</p>
+          <h2 id="blockTitle">Block Puzzle</h2>
+          <p id="blockDescription">Drag a block from below and drop it onto the 8x8 board. Fill full rows or columns to clear them.</p>
         </div>
         <div class="topbar-actions">
           <button class="secondary-button" id="restartBlockPuzzleButton">Restart</button>
@@ -152,22 +137,22 @@
       <div class="block-puzzle-layout">
         <div class="block-puzzle-side">
           <div class="block-score-card">
-            <h3>Score</h3>
+            <h3 id="blockScoreLabel">Score</h3>
             <div class="block-score-value" id="blockPuzzleScore">0</div>
           </div>
 
           <div class="block-score-card">
-            <h3>Best Score</h3>
+            <h3 id="blockBestScoreLabel">Best Score</h3>
             <div class="block-score-value small" id="blockPuzzleBestScore">0</div>
           </div>
 
           <div class="block-score-card">
-            <h3>Status</h3>
+            <h3 id="blockStatusLabel">Status</h3>
             <div class="block-status-text" id="blockPuzzleStatus">Drag a block to start</div>
           </div>
 
           <div class="block-score-card">
-            <h3>Total Lines Cleared</h3>
+            <h3 id="blockLinesLabel">Total Lines Cleared</h3>
             <div class="block-score-value small" id="blockTotalClearsValue">0</div>
           </div>
         </div>
@@ -176,7 +161,7 @@
           <div class="block-board" id="blockBoard"></div>
 
           <div class="block-pieces-panel">
-            <h3>Available Blocks</h3>
+            <h3 id="blockPiecesTitle">Available Blocks</h3>
             <div class="block-pieces-row" id="blockPiecesRow"></div>
           </div>
         </div>
